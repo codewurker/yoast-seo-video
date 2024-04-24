@@ -1,0 +1,428 @@
+# Copyright (C) 2023 Team Yoast
+# This file is distributed under the GPL v2.
+msgid ""
+msgstr ""
+"Project-Id-Version: Yoast SEO: Video 14.8\n"
+"Report-Msgid-Bugs-To: https://yoast.com/wordpress/plugins/video-seo/\n"
+"POT-Creation-Date: 2023-08-08 08:19:31+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2023-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Yoast Translate Team <translations@yoast.com>\n"
+"Language-Team: Yoast Translate <translations@yoast.com>\n"
+"Language: en\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Poedit-Country: UNITED STATES\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;"
+"_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-Bookmarks: \n"
+"X-Textdomain-Support: yes\n"
+"X-Generator: CSL v1.x\n"
+"X-Poedit-Language: English\n"
+
+#. translators: 1: link open tag; 2: link close tag.
+#: classes/class-wpseo-video-admin-page.php:58
+msgid ""
+"Please enable XML sitemaps in Yoast SEO > Settings > %1$sSite features%2$s."
+msgstr ""
+
+#: classes/class-wpseo-video-admin-page.php:65
+msgid "General Settings"
+msgstr ""
+
+#: classes/class-wpseo-video-admin-page.php:67
+msgid "Please find your video sitemap here:"
+msgstr ""
+
+#: classes/class-wpseo-video-admin-page.php:67
+msgid "XML Video Sitemap"
+msgstr ""
+
+#: classes/class-wpseo-video-admin-page.php:70
+msgid "Select at least one post type to enable the video sitemap."
+msgstr ""
+
+#: classes/class-wpseo-video-admin-page.php:73
+msgid "Hide the sitemap from normal visitors?"
+msgstr ""
+
+#: classes/class-wpseo-video-admin-page.php:74
+msgid "Disable Media RSS Enhancement"
+msgstr ""
+
+#: classes/class-wpseo-video-admin-page.php:77
+msgid "Custom fields"
+msgstr ""
+
+#: classes/class-wpseo-video-admin-page.php:78
+msgid ""
+"Custom fields the plugin should check for video content (comma separated)"
+msgstr ""
+
+#: classes/class-wpseo-video-admin-page.php:79
+msgid "(Optional) Embedly API Key"
+msgstr ""
+
+#. translators: 1,3: link open tag; 2: link close tag.
+#: classes/class-wpseo-video-admin-page.php:81
+msgid ""
+"The video SEO plugin provides where possible enriched information about your "
+"videos. A lot of %1$svideo services%2$s are supported by default. For those "
+"services which aren't supported, we can try to retrieve enriched video "
+"information using %3$sEmbedly%2$s. If you want to use this option, you'll "
+"need to sign up for a (free) %3$sEmbedly%2$s account and provide the API key "
+"you receive."
+msgstr ""
+
+#: classes/class-wpseo-video-admin-page.php:84
+msgid "Embed Settings"
+msgstr ""
+
+#: classes/class-wpseo-video-admin-page.php:86
+msgid ""
+"Allow videos to be played directly on other websites, such as Facebook or "
+"Twitter?"
+msgstr ""
+
+#. translators: 1: link open tag, 2: link close tag.
+#: classes/class-wpseo-video-admin-page.php:88
+msgid "Try to make videos responsive using %1$sFitVids.js%2$s?"
+msgstr ""
+
+#: classes/class-wpseo-video-admin-page.php:90
+msgid ""
+"YouTube embeds: make pages load faster by only loading the YouTube player "
+"when the user clicks play."
+msgstr ""
+
+#: classes/class-wpseo-video-admin-page.php:93
+msgid "Content width"
+msgstr ""
+
+#: classes/class-wpseo-video-admin-page.php:94
+msgid ""
+"This defaults to your themes content width, but if it's empty, setting a "
+"value here will make sure videos are embedded in the right width."
+msgstr ""
+
+#: classes/class-wpseo-video-admin-page.php:96
+msgid "Wistia domain"
+msgstr ""
+
+#: classes/class-wpseo-video-admin-page.php:97
+msgid ""
+"If you use Wistia in combination with a custom domain, set this to the "
+"domain name you use for your Wistia videos, no http: or slashes needed."
+msgstr ""
+
+#: classes/class-wpseo-video-admin-page.php:100
+msgid "Post Types for which to enable the Video SEO plugin"
+msgstr ""
+
+#: classes/class-wpseo-video-admin-page.php:101
+msgid "Determine which post types on your site might contain video."
+msgstr ""
+
+#: classes/class-wpseo-video-admin-page.php:112
+msgid "Taxonomies to include in XML Video Sitemap"
+msgstr ""
+
+#: classes/class-wpseo-video-admin-page.php:113
+msgid ""
+"You can also include your taxonomy archives, for instance, if you have "
+"videos on a category page."
+msgstr ""
+
+#: classes/class-wpseo-video-admin-page.php:133
+msgid "Indexation of videos in your content"
+msgstr ""
+
+#: classes/class-wpseo-video-admin-page.php:135
+msgid ""
+"This process goes through all the post types specified by you, as well as "
+"the terms of each taxonomy, to check for videos in the content. If the "
+"plugin finds a video, it updates the metadata for that piece of content, so "
+"it can add that metadata and content to the XML Video Sitemap."
+msgstr ""
+
+#: classes/class-wpseo-video-admin-page.php:137
+msgid ""
+"By default the plugin only checks content that hasn't been checked yet. "
+"However, if you check 'Force Re-Index', it will re-check all content. This "
+"is particularly interesting if you want to check for a video embed code that "
+"wasn't supported before, or if you want to update thumbnail images en masse."
+msgstr ""
+
+#: classes/class-wpseo-video-admin-page.php:143
+msgid "Force reindex of already indexed videos."
+msgstr ""
+
+#: classes/class-wpseo-video-admin-page.php:146
+msgid "Re-Index Videos"
+msgstr ""
+
+#: classes/class-wpseo-video-bootstrap.php:219
+msgid ""
+"The PHP SPL extension seems to be unavailable. Please ask your web host to "
+"enable it."
+msgstr ""
+
+#: classes/class-wpseo-video-bootstrap.php:229
+msgid ""
+"Please upgrade WordPress to the latest version to allow WordPress and the "
+"Video SEO module to work properly."
+msgstr ""
+
+#. translators: $1$s expands to Yoast SEO.
+#: classes/class-wpseo-video-bootstrap.php:245
+msgid ""
+"Please upgrade the %1$s plugin to the latest version to allow the Video SEO "
+"module to work."
+msgstr ""
+
+#: classes/class-wpseo-video-bootstrap.php:407
+msgid "Activation of Video SEO failed:"
+msgstr ""
+
+#. translators: %1$s expands to Yoast SEO.
+#: classes/class-wpseo-video-bootstrap.php:418
+msgid ""
+"Please ask the (network) admin to install & activate %1$s and then enable "
+"its XML sitemap functionality to allow the Video SEO module to work."
+msgstr ""
+
+#. translators: %1$s and %3$s expand to anchor tags with a link to the download
+#. page for Yoast SEO . %2$s expands to Yoast SEO.
+#: classes/class-wpseo-video-bootstrap.php:444
+msgid ""
+"Please %1$sinstall & activate %2$s%3$s and then enable its XML sitemap "
+"functionality to allow the Video SEO module to work."
+msgstr ""
+
+#: classes/class-wpseo-video-embed.php:46
+msgid "Load YouTube video"
+msgstr ""
+
+#: classes/class-wpseo-video-metabox.php:53
+msgid "Disable video"
+msgstr ""
+
+#. translators: %s: post type name.
+#: classes/class-wpseo-video-metabox.php:55
+msgid "Disables all Video SEO output for this %s"
+msgstr ""
+
+#: classes/class-wpseo-video-metabox.php:57
+msgid "Video Thumbnail"
+msgstr ""
+
+#. translators: 1: link open tag; 2: link closing tag.
+#: classes/class-wpseo-video-metabox.php:59
+msgid "Now set to %1$sthis image%2$s based on the embed code."
+msgstr ""
+
+#: classes/class-wpseo-video-metabox.php:60
+msgid "URL to thumbnail image (remember it'll be displayed as 16:9)"
+msgstr ""
+
+#: classes/class-wpseo-video-metabox.php:62
+msgid "Video Duration"
+msgstr ""
+
+#: classes/class-wpseo-video-metabox.php:63
+msgid "Overwrite the video duration, or enter one if it's empty."
+msgstr ""
+
+#: classes/class-wpseo-video-metabox.php:65
+msgid "Tags"
+msgstr ""
+
+#: classes/class-wpseo-video-metabox.php:66
+msgid "Add extra tags for this video"
+msgstr ""
+
+#: classes/class-wpseo-video-metabox.php:68
+msgid "Rating"
+msgstr ""
+
+#: classes/class-wpseo-video-metabox.php:69
+msgid "Set a rating between 0 and 5."
+msgstr ""
+
+#: classes/class-wpseo-video-metabox.php:71
+msgid "Not Family-friendly"
+msgstr ""
+
+#: classes/class-wpseo-video-metabox.php:72
+msgid "Mark this video as not Family-friendly"
+msgstr ""
+
+#: classes/class-wpseo-video-metabox.php:73
+msgid ""
+"If this video should not be available for safe search users, check this box."
+msgstr ""
+
+#: classes/class-wpseo-video-metabox.php:108
+msgid "Video"
+msgstr ""
+
+#: classes/class-wpseo-video-metabox.php:239
+msgid "video"
+msgstr ""
+
+#: classes/class-wpseo-video-metabox.php:240
+msgid ""
+"You should consider adding the word \"video\" in your title, to optimize "
+"your ability to be found by people searching for video."
+msgstr ""
+
+#: classes/class-wpseo-video-metabox.php:241
+msgid ""
+"You're using the word \"video\" in your title, this optimizes your ability "
+"to be found by people searching for video."
+msgstr ""
+
+#: classes/class-wpseo-video-metabox.php:242
+msgid ""
+"Your body copy is too short for Search Engines to understand the topic of "
+"your video, add some more content describing the contents of the video."
+msgstr ""
+
+#: classes/class-wpseo-video-metabox.php:243
+msgid ""
+"Your body copy is at optimal length for your video to be recognized by "
+"Search Engines."
+msgstr ""
+
+#. translators: 1: links to https:yoast.com/video-not-showing-search-results,
+#. 2: closing link tag
+#: classes/class-wpseo-video-metabox.php:245
+msgid ""
+"Your body copy is quite long, make sure that the video is the most important "
+"asset on the page, read %1$sthis post%2$s for more info."
+msgstr ""
+
+#: classes/class-wpseo-video-schema-videoobject.php:198
+msgid "No description"
+msgstr ""
+
+#: classes/class-wpseo-video-sitemap.php:380
+msgid "Video SEO"
+msgstr ""
+
+#: classes/class-wpseo-video-sitemap.php:494
+msgid "Ignore."
+msgstr ""
+
+#. translators: 1: link open tag, 2: link close tag.
+#: classes/class-wpseo-video-sitemap.php:497
+msgid ""
+"The VideoSEO upgrade which was just applied contains a lot of improvements. "
+"It is strongly recommended that you %1$sre-index the video content on your "
+"website%2$s with the 'force reindex' option checked."
+msgstr ""
+
+#: views/reindex-page.php:8
+msgid "Re-indexation"
+msgstr ""
+
+#: views/reindex-page.php:10
+msgid ""
+"Your site is being indexed at the moment, so don't close this window. This "
+"process may take a few minutes to complete."
+msgstr ""
+
+#: views/reindex-page.php:28
+msgid "Estimated time to go:"
+msgstr ""
+
+#: views/reindex-page.php:29
+msgid "Posts to go:"
+msgstr ""
+
+#: views/reindex-page.php:30
+msgid "Total posts:"
+msgstr ""
+
+#. translators: %1$s expands to a link start tag to the plugin settings page,
+#. %2$s is the link closing tag.
+#: views/reindex-page.php:36
+msgid "%1$sDone! Go back to the Video SEO settings%2$s"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "Yoast SEO: Video"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "https://yoa.st/4fh"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"The Yoast Video SEO plugin makes sure your videos are recognized by search "
+"engines and social platforms, so they look good when found on these social "
+"platforms and in the search results."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Team Yoast"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://yoa.st/team-yoast-video"
+msgstr ""
+
+#: js/src/components/OpenGooglePreview.js:50
+msgid "Title and description"
+msgstr ""
+
+#: js/src/components/OpenGooglePreview.js:51
+msgid ""
+"Your video will use the same SEO title and meta description you enter in our "
+"Google Preview editor."
+msgstr ""
+
+#: js/src/components/OpenGooglePreview.js:60
+msgid "Open Google Preview editor"
+msgstr ""
+
+#: js/src/components/VideoSettings.js:115
+msgid "Mark this video as not family friendly"
+msgstr ""
+
+# %s expands to an opening anchor tag, %s expands to a closing anchor tag
+#: js/src/components/VideoSettings.js:32
+msgid "To learn more, read the %sYoast SEO Video configuration guide.%s"
+msgstr ""
+
+#: js/src/components/VideoSettings.js:58
+msgid ""
+"It looks like your content does not yet contain a video. Please add a video "
+"and save your draft in order for Video SEO to work."
+msgstr ""
+
+#: js/src/components/VideoSettings.js:68
+msgid "We've made some changes to Yoast SEO Video."
+msgstr ""
+
+#: js/src/components/VideoSettings.js:74
+msgid "Learn more about what has changed."
+msgstr ""
+
+#: js/src/components/VideoSettings.js:78
+msgid ""
+"Edit the Schema information below to optimize your video for search engines. "
+msgstr ""
+
+#: js/src/components/VideoSettings.js:84
+msgid "Video thumbnail"
+msgstr ""
+
+#: js/src/components/VideoSettings.js:95
+msgid "Duration"
+msgstr ""
