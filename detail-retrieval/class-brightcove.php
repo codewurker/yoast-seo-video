@@ -186,6 +186,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Brightcove' ) ) {
 
 		/**
 		 * Set the content location
+		 *
+		 * @return void
 		 */
 		protected function set_content_loc() {
 			if ( ! empty( $this->decoded_response->FLVURL ) ) {
@@ -195,6 +197,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Brightcove' ) ) {
 
 		/**
 		 * Set the video duration
+		 *
+		 * @return void
 		 */
 		protected function set_duration() {
 			if ( ! empty( $this->decoded_response->length ) && $this->decoded_response->length > 0 ) {
@@ -207,6 +211,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Brightcove' ) ) {
 
 		/**
 		 * Set the video height
+		 *
+		 * @return void
 		 */
 		protected function set_height() {
 			if ( ! empty( $this->decoded_response->videoFullLength->frameHeight ) ) {
@@ -216,6 +222,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Brightcove' ) ) {
 
 		/**
 		 * Set the player location
+		 *
+		 * @return void
 		 */
 		protected function set_player_loc() {
 			/*
@@ -227,6 +235,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Brightcove' ) ) {
 
 		/**
 		 * Set the thumbnail location
+		 *
+		 * @return void
 		 */
 		protected function set_thumbnail_loc() {
 			if ( isset( $this->decoded_response->videoStillURL ) && is_string( $this->decoded_response->videoStillURL ) && $this->decoded_response->videoStillURL !== '' ) {
@@ -245,6 +255,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Brightcove' ) ) {
 
 		/**
 		 * Set the video view count
+		 *
+		 * @return void
 		 */
 		protected function set_view_count() {
 			if ( ! empty( $this->decoded_response->playsTotal ) ) {
@@ -254,6 +266,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Brightcove' ) ) {
 
 		/**
 		 * Set the video width
+		 *
+		 * @return void
 		 */
 		protected function set_width() {
 			if ( ! empty( $this->decoded_response->videoFullLength->frameWidth ) ) {

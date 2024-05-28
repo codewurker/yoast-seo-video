@@ -104,19 +104,19 @@ class WPSEO_Video_Sitemap {
 				// phpcs:ignore WordPress.Security.NonceVerification.Missing -- Reason: We are not processing form information.
 				$post_action = sanitize_text_field( wp_unslash( $_POST['action'] ) );
 			}
-			$doing_ajax                 = \wp_doing_ajax();
+			$doing_ajax                 = wp_doing_ajax();
 			$is_elementor_ajax_save     = $doing_ajax && $post_action === 'elementor_ajax';
 			$is_our_elementor_ajax_save = $doing_ajax && $post_action === 'wpseo_elementor_save';
 
 			// Update video post meta in Elementor save, after our WordPress SEO save.
 			if ( $is_our_elementor_ajax_save ) {
-				\add_action( 'wpseo_saved_postdata', [ $this, 'update_video_post_meta' ], 10 );
-				\add_action( 'wpseo_saved_postdata', [ $this, 'invalidate_sitemap' ], 12 );
+				add_action( 'wpseo_saved_postdata', [ $this, 'update_video_post_meta' ], 10 );
+				add_action( 'wpseo_saved_postdata', [ $this, 'invalidate_sitemap' ], 12 );
 			}
 			// Update video meta on normal save. But prevent updates in Elementor's own save request, as we have our own.
 			elseif ( ! $is_elementor_ajax_save ) {
-				\add_action( 'wp_insert_post', [ $this, 'update_video_post_meta' ], 12, 3 );
-				\add_action( 'wp_insert_post', [ $this, 'invalidate_sitemap' ], 13 );
+				add_action( 'wp_insert_post', [ $this, 'update_video_post_meta' ], 12, 3 );
+				add_action( 'wp_insert_post', [ $this, 'invalidate_sitemap' ], 13 );
 			}
 
 			$valid_pages = [
@@ -206,6 +206,8 @@ class WPSEO_Video_Sitemap {
 	 * Method to invalidate the sitemap
 	 *
 	 * @param int $post_id Post ID.
+	 *
+	 * @return void
 	 */
 	public function invalidate_sitemap( $post_id ) {
 		// If this is just a revision, don't invalidate the sitemap cache yet.
@@ -261,6 +263,8 @@ class WPSEO_Video_Sitemap {
 	 * themselves, so if we can rely on that, all the better.
 	 *
 	 * @since 1.5.4
+	 *
+	 * @return void
 	 */
 	public function fitvids() {
 		if ( ! is_singular() || defined( 'JWP6' ) ) {
@@ -302,6 +306,8 @@ class WPSEO_Video_Sitemap {
 	 * The fitvids instantiation code.
 	 *
 	 * @since 1.5.4
+	 *
+	 * @return void
 	 */
 	public function fitvids_footer() {
 		global $post;
@@ -344,6 +350,8 @@ class WPSEO_Video_Sitemap {
 	 * Adds the rewrite for the video XML sitemap
 	 *
 	 * @since 0.1
+	 *
+	 * @return void
 	 */
 	public function init() {
 		$this->max_entries = $this->get_entries_per_page();
@@ -357,7 +365,7 @@ class WPSEO_Video_Sitemap {
 	 *
 	 * @param array $helpscout_settings The HelpScout settings.
 	 *
-	 * @return array $helpscout_settings The HelpScout settings with the News SEO beacon added.
+	 * @return array The HelpScout settings with the News SEO beacon added.
 	 */
 	public function filter_helpscout_beacon( $helpscout_settings ) {
 		$helpscout_settings['pages_ids']['wpseo_video'] = '4e7489db-f907-41b3-9e86-93a01b4df9b0';
@@ -370,6 +378,8 @@ class WPSEO_Video_Sitemap {
 	 * Add VideoSeo Admin bar menu item
 	 *
 	 * @param object $wp_admin_bar Current admin bar.
+	 *
+	 * @return void
 	 */
 	public function add_admin_bar_item( $wp_admin_bar ) {
 		if ( $this->can_manage_options() === true ) {
@@ -388,6 +398,8 @@ class WPSEO_Video_Sitemap {
 	 * Register the video sitemap in the WPSEO sitemap class
 	 *
 	 * @since 1.7
+	 *
+	 * @return void
 	 */
 	public function register_sitemap() {
 		$basename = self::get_video_sitemap_basename();
@@ -408,6 +420,8 @@ class WPSEO_Video_Sitemap {
 
 	/**
 	 * Execute upgrade actions when needed
+	 *
+	 * @return void
 	 */
 	public function upgrade() {
 		$options         = get_option( 'wpseo_video' );
@@ -430,11 +444,6 @@ class WPSEO_Video_Sitemap {
 			WPSEO_Option_Video::get_instance()->clean();
 			// Make sure our meta values are cleaned up even if WP SEO would have been upgraded already.
 			WPSEO_Meta::clean_up();
-		}
-
-		// Re-add missing durations.
-		if ( $current_version === '0' || ( version_compare( $current_version, '1.7', '<' ) && version_compare( $current_version, '1.6', '>' ) ) ) {
-			WPSEO_Meta_Video::re_add_durations();
 		}
 
 		// Recommend force re-index.
@@ -467,6 +476,15 @@ class WPSEO_Video_Sitemap {
 			update_option( 'wpseo_video', $options );
 		}
 
+		// Force a translations update.
+		if ( $current_version !== '0' && version_compare( $current_version, '14.9-RC0', '<=' ) ) {
+			require_once ABSPATH . 'wp-admin/includes/admin.php';
+			require_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';
+			$upgrader       = new WP_Upgrader();
+			$upgrader->skin = new Automatic_Upgrader_Skin();
+			Language_Pack_Upgrader::async_upgrade( $upgrader );
+		}
+
 		// Make sure version nr gets updated for any version without specific upgrades.
 		// Re-get to make sure we have the latest version.
 		if ( version_compare( $current_version, WPSEO_VIDEO_VERSION, '<' ) ) {
@@ -478,6 +496,8 @@ class WPSEO_Video_Sitemap {
 	 * Recommend re-index with force index checked
 	 *
 	 * @since 1.8.0
+	 *
+	 * @return void
 	 */
 	public function recommend_force_index() {
 		if ( ! $this->can_manage_options() ) {
@@ -503,6 +523,8 @@ class WPSEO_Video_Sitemap {
 
 	/**
 	 * Function used to remove the temporary admin notices for several purposes, dies on exit.
+	 *
+	 * @return void
 	 */
 	public function set_ignore() {
 		if ( ! $this->can_manage_options() || ! isset( $_POST['option'] ) ) {
@@ -516,9 +538,11 @@ class WPSEO_Video_Sitemap {
 
 	/**
 	 * Load other scripts for the admin in the Video SEO plugin
+	 *
+	 * @return void
 	 */
 	public function admin_video_enqueue_scripts() {
-        // phpcs:ignore WordPress.Security.NonceVerification.Missing -- Loads a page, doesn't perform any action yet.
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- Loads a page, doesn't perform any action yet.
 		if ( isset( $_POST['reindex'] ) ) {
 			wp_enqueue_script(
 				'videoseo-admin-progress-bar',
@@ -532,6 +556,8 @@ class WPSEO_Video_Sitemap {
 
 	/**
 	 * Load styles for the admin in Video SEO
+	 *
+	 * @return void
 	 */
 	public function admin_video_enqueue_styles() {
 		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- Loads a page, doesn't perform any action yet.
@@ -547,6 +573,8 @@ class WPSEO_Video_Sitemap {
 
 	/**
 	 * Load a small js file to facilitate ignoring admin messages
+	 *
+	 * @return void
 	 */
 	public function admin_enqueue_scripts_ignore() {
 		if ( ! $this->can_manage_options() ) {
@@ -558,6 +586,8 @@ class WPSEO_Video_Sitemap {
 
 	/**
 	 * AJAX request handler for reindex posts
+	 *
+	 * @return void
 	 */
 	public function index_posts_callback() {
 		if ( isset( $_POST['nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), 'videoseo-ajax-nonce-for-reindex' ) ) {
@@ -588,6 +618,7 @@ class WPSEO_Video_Sitemap {
 					}
 				}
 
+				// phpcs:ignore VariableAnalysis.CodeAnalysis.VariableAnalysis.UndefinedVariable -- These are declared above via variable variables.
 				$this->reindex( $portion, $start, $total );
 
 				$end_time = time();
@@ -663,7 +694,7 @@ class WPSEO_Video_Sitemap {
 		$sitemap_post_types = WPSEO_Options::get( 'videositemap_posttypes', [] );
 		if ( is_array( $sitemap_post_types ) && $sitemap_post_types !== [] ) {
 			// Use fields => ids to limit the overhead of fetching entire post objects, fetch only an array of ids instead to count.
-            // phpcs:disable WordPress.DB.SlowDBQuery -- no other way.
+			// phpcs:disable WordPress.DB.SlowDBQuery -- no other way.
 			$args = [
 				'post_type'      => $sitemap_post_types,
 				'post_status'    => 'publish',
@@ -719,6 +750,8 @@ class WPSEO_Video_Sitemap {
 	 * Adds oembed endpoints for supported video platforms that are not supported by core.
 	 *
 	 * @since 1.3.5
+	 *
+	 * @return void
 	 */
 	public function add_oembed() {
 		// @todo - check with official plugin.
@@ -788,6 +821,8 @@ class WPSEO_Video_Sitemap {
 	 * Add the MRSS namespace to the RSS feed.
 	 *
 	 * @since 0.1
+	 *
+	 * @return void
 	 */
 	public function mrss_namespace() {
 		echo ' xmlns:media="http://search.yahoo.com/mrss/" ';
@@ -800,6 +835,8 @@ class WPSEO_Video_Sitemap {
 	 *
 	 * @since     0.1
 	 * @copyright Andy Skelton
+	 *
+	 * @return void
 	 */
 	public function mrss_item() {
 		global $mrss_gallery_lookup;
@@ -817,7 +854,7 @@ class WPSEO_Video_Sitemap {
 			add_filter( 'wp_get_attachment_link', [ $this, 'mrss_gallery_lookup' ], 10, 5 );
 			// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Using a WP Core hook.
 			$content = apply_filters( 'the_content', get_the_content() );
-			remove_filter( 'wp_get_attachment_link', [ $this, 'mrss_gallery_lookup' ], 10, 5 );
+			remove_filter( 'wp_get_attachment_link', [ $this, 'mrss_gallery_lookup' ], 10 );
 			$lookup = $mrss_gallery_lookup;
 			unset( $mrss_gallery_lookup );
 		}
@@ -929,7 +966,7 @@ class WPSEO_Video_Sitemap {
 	 */
 	public function mrss_gallery_lookup( $link, $id ) {
 		if ( preg_match( '` src="([^"]+)"`', $link, $matches ) ) {
-            // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound -- not our global var.
+			// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound -- not our global var.
 			$GLOBALS['mrss_gallery_lookup'][ $matches[1] ] = $id;
 		}
 
@@ -940,6 +977,8 @@ class WPSEO_Video_Sitemap {
 	 * Print an MRSS item.
 	 *
 	 * @param array $media Media.
+	 *
+	 * @return void
 	 */
 	public function mrss_print( $media ) {
 		if ( ! empty( $media ) ) {
@@ -955,6 +994,8 @@ class WPSEO_Video_Sitemap {
 	 *
 	 * @param array $element Element.
 	 * @param int   $indent  Ident.
+	 *
+	 * @return void
 	 */
 	public function mrss_print_element( $element, $indent = 2 ) {
 		echo "\n";
@@ -1165,8 +1206,8 @@ class WPSEO_Video_Sitemap {
 	 *             method is tied to.
 	 * @since 11.x Removed the $update parameter as it was never used.
 	 *
-	 * @param int           $post_id The post ID to check and possibly update the video details for.
-	 * @param \WP_Post|null $post    The post object.
+	 * @param int          $post_id The post ID to check and possibly update the video details for.
+	 * @param WP_Post|null $post    The post object.
 	 *
 	 * @return array|string|false The video array that was just stored, string "none" if nothing
 	 *                            was stored or false if not applicable.
@@ -1290,7 +1331,7 @@ class WPSEO_Video_Sitemap {
 			$vid['tag'] = $tag;
 
 			if ( WPSEO_Video_Wrappers::is_development_mode() ) {
-                // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log -- we're in development mode.
+				// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log -- we're in development mode.
 				error_log( 'Updated [' . esc_html( $post->post_title ) . '](' . esc_url( add_query_arg( [ 'p' => $post->ID ], home_url() ) ) . ') - ' . esc_html( $vid['type'] ) );
 			}
 		}
@@ -1342,6 +1383,8 @@ class WPSEO_Video_Sitemap {
 
 	/**
 	 * Outputs the XSL file
+	 *
+	 * @return void
 	 */
 	public function build_video_sitemap_xsl() {
 		$protocol = $this->get_server_protocol();
@@ -1364,7 +1407,7 @@ class WPSEO_Video_Sitemap {
 		require_once ABSPATH . '/wp-admin/includes/file.php';
 		WP_Filesystem();
 
-        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- This file is straight from this plugin.
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- This file is straight from this plugin.
 		echo $wp_filesystem->get_contents( plugin_dir_path( WPSEO_VIDEO_FILE ) . 'xml-video-sitemap.xsl' );
 
 		die();
@@ -1374,6 +1417,8 @@ class WPSEO_Video_Sitemap {
 	 * The main function of this class: it generates the XML sitemap's contents.
 	 *
 	 * @since 0.1
+	 *
+	 * @return void
 	 */
 	public function build_video_sitemap() {
 		$protocol = $this->get_server_protocol();
@@ -1399,7 +1444,7 @@ class WPSEO_Video_Sitemap {
 		$sitemap_post_types = WPSEO_Options::get( 'videositemap_posttypes', [] );
 		if ( is_array( $sitemap_post_types ) && $sitemap_post_types !== [] ) {
 			// Set the initial args array to get videos in chunks.
-            // phpcs:disable WordPress.DB.SlowDBQuery -- Ain't no other way.
+			// phpcs:disable WordPress.DB.SlowDBQuery -- Ain't no other way.
 			$args = [
 				'post_type'      => $sitemap_post_types,
 				'post_status'    => 'publish',
@@ -1465,9 +1510,8 @@ class WPSEO_Video_Sitemap {
 						/**
 						 * Filter: 'wpseo_video_rating' - Allow changing the rating for a video on output.
 						 *
-						 * @api float $rating A rating between 0 and 5.
-						 *
-						 * @param int $post_id The ID of the post the video is in.
+						 * @param float $rating  A rating between 0 and 5.
+						 * @param int   $post_id The ID of the post the video is in.
 						 */
 						$rating = apply_filters( 'wpseo_video_rating', WPSEO_Meta::get_value( 'videositemap-rating', $item->ID ) );
 						if ( $rating && WPSEO_Meta_Video::sanitize_rating( null, $rating, WPSEO_Meta_Video::$meta_fields['video']['videositemap-rating'] ) ) {
@@ -1542,7 +1586,6 @@ class WPSEO_Video_Sitemap {
 		$output .= "\t\t<loc>" . esc_url( $video['permalink'] ) . '</loc>' . "\n";
 		$output .= "\t\t<video:video>\n";
 
-
 		if ( empty( $video['publication_date'] ) || WPSEO_Video_Wrappers::is_valid_datetime( $video['publication_date'] ) === false ) {
 			$post = $post_or_tax_object;
 			if ( is_object( $post ) && $post->post_date_gmt !== '0000-00-00 00:00:00' && WPSEO_Video_Wrappers::is_valid_datetime( $post->post_date_gmt ) ) {
@@ -1611,7 +1654,7 @@ class WPSEO_Video_Sitemap {
 		}
 
 		// Allow custom implementations with extra tags here.
-		$output .= apply_filters( 'wpseo_video_item', '', isset( $video['post_id'] ) ? $video['post_id'] : 0 );
+		$output .= apply_filters( 'wpseo_video_item', '', ( $video['post_id'] ?? 0 ) );
 
 		$output .= "\t\t</video:video>\n";
 
@@ -1673,7 +1716,7 @@ class WPSEO_Video_Sitemap {
 	 * @return int Duration of the video
 	 */
 	public function get_flv_duration( $file ) {
-        // phpcs:disable WordPress.WP.AlternativeFunctions -- rewriting this as WP filesystem isn't worth it.
+		// phpcs:disable WordPress.WP.AlternativeFunctions -- rewriting this as WP filesystem isn't worth it.
 		if ( is_file( $file ) && is_readable( $file ) ) {
 			$flv = fopen( $file, 'rb' );
 			if ( is_resource( $flv ) ) {
@@ -1698,6 +1741,8 @@ class WPSEO_Video_Sitemap {
 	 * Outputs the admin panel for the Video Sitemaps on the XML Sitemaps page with the WP SEO admin
 	 *
 	 * @since 0.1
+	 *
+	 * @return void
 	 */
 	public function admin_panel() {
 		$sitemap_url        = null;
@@ -1772,9 +1817,9 @@ class WPSEO_Video_Sitemap {
 		 *
 		 * @since 4.1.0
 		 *
-		 * @param bool Whether or not to support (add) Yandex specific video SEO
-		 *             meta tags. Defaults to `true`.
-		 *             Return `false` to disable Yandex support.
+		 * @param bool $yandex_on Whether or not to support (add) Yandex specific video SEO
+		 *                        meta tags. Defaults to `true`.
+		 *                        Return `false` to disable Yandex support.
 		 */
 		if ( apply_filters( 'wpseo_video_yandex_support', true ) === true ) {
 			$namespaces[] = 'ya: http://webmaster.yandex.ru/vocabularies/';
@@ -1947,6 +1992,8 @@ class WPSEO_Video_Sitemap {
 	 * @param int $portion Number of posts.
 	 * @param int $start   Offset.
 	 * @param int $total   Total number of posts which will be re-indexed.
+	 *
+	 * @return void
 	 */
 	private function reindex( $portion, $start, $total ) {
 		require_once ABSPATH . 'wp-admin/includes/media.php';
@@ -1960,15 +2007,14 @@ class WPSEO_Video_Sitemap {
 				'offset'      => $start,
 			];
 
-            // phpcs:ignore WordPress.Security.NonceVerification.Missing -- we don't have to verify this with a nonce, we have to verify the overall action.
+			// phpcs:ignore WordPress.Security.NonceVerification.Missing -- we don't have to verify this with a nonce, we have to verify the overall action.
 			if ( ! isset( $_POST['force'] ) ) {
-                // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query -- no other way to do this.
+				// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query -- no other way to do this.
 				$args['meta_query'] = [
 					'key'     => '_yoast_wpseo_video_meta',
 					'compare' => 'NOT EXISTS',
 				];
 			}
-
 
 			$results      = get_posts( $args );
 			$result_count = count( $results );

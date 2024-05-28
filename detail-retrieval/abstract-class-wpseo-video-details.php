@@ -110,7 +110,7 @@ if ( ! class_exists( 'WPSEO_Video_Details' ) ) {
 		/**
 		 * The details retrieved for this video.
 		 *
-		 * @var array
+		 * @var array<string, int|string|null>
 		 */
 		protected $vid = [
 			// Should/will always be set after retrieving the details.
@@ -141,7 +141,7 @@ if ( ! class_exists( 'WPSEO_Video_Details' ) ) {
 		/**
 		 * The video array with all the data of the previous "fetch", if available.
 		 *
-		 * @var array
+		 * @var array<string, int|string|null>
 		 */
 		protected $old_vid = [];
 
@@ -171,8 +171,8 @@ if ( ! class_exists( 'WPSEO_Video_Details' ) ) {
 		/**
 		 * Instantiate the class, main routine.
 		 *
-		 * @param array $vid     The video array with all the data.
-		 * @param array $old_vid The video array with all the data of the previous "fetch", if available.
+		 * @param array<string, int|string|null> $vid     The video array with all the data.
+		 * @param array<string, int|string|null> $old_vid The video array with all the data of the previous "fetch", if available.
 		 */
 		public function __construct( $vid, $old_vid = [] ) {
 			$vid       = (array) $vid;
@@ -212,7 +212,7 @@ if ( ! class_exists( 'WPSEO_Video_Details' ) ) {
 		/**
 		 * Get the enriched video details without empties
 		 *
-		 * @return array
+		 * @return array<string, int|string|null>
 		 */
 		public function get_details() {
 			return array_filter( $this->vid );
@@ -385,6 +385,8 @@ if ( ! class_exists( 'WPSEO_Video_Details' ) ) {
 
 		/**
 		 * Decode a remote response as json
+		 *
+		 * @return void
 		 */
 		protected function decode_as_json() {
 			$response = json_decode( $this->remote_response );
@@ -395,6 +397,8 @@ if ( ! class_exists( 'WPSEO_Video_Details' ) ) {
 
 		/**
 		 * Decode a remote response as serialized
+		 *
+		 * @return void
 		 */
 		protected function decode_as_serialized() {
 			$response = unserialize( $this->remote_response );
@@ -405,6 +409,8 @@ if ( ! class_exists( 'WPSEO_Video_Details' ) ) {
 
 		/**
 		 * Decode a remote response as simpleXML
+		 *
+		 * @return void
 		 */
 		protected function decode_as_simplexml() {
 			$this->xml = new SimpleXMLElement( $this->remote_response );
@@ -478,16 +484,22 @@ if ( ! class_exists( 'WPSEO_Video_Details' ) ) {
 
 		/**
 		 * Set the player location
+		 *
+		 * @return void
 		 */
 		abstract protected function set_player_loc();
 
 		/**
 		 * Set the thumbnail location
+		 *
+		 * @return void
 		 */
 		abstract protected function set_thumbnail_loc();
 
 		/**
 		 * Set the video type based on the concrete class name
+		 *
+		 * @return void
 		 */
 		protected function set_type() {
 			$type = str_ireplace( 'WPSEO_Video_Details_', '', static::class, $count );
@@ -502,6 +514,8 @@ if ( ! class_exists( 'WPSEO_Video_Details' ) ) {
 		 * Set the video duration based on a typical json response
 		 *
 		 * @uses WPSEO_Video_Details::$decoded_response
+		 *
+		 * @return void
 		 */
 		protected function set_duration_from_json_object() {
 			if ( ! empty( $this->decoded_response->duration ) ) {
@@ -513,6 +527,8 @@ if ( ! class_exists( 'WPSEO_Video_Details' ) ) {
 		 * Set the video height based on a typical json response
 		 *
 		 * @uses WPSEO_Video_Details::$decoded_response
+		 *
+		 * @return void
 		 */
 		protected function set_height_from_json_object() {
 			if ( ! empty( $this->decoded_response->height ) ) {
@@ -524,6 +540,8 @@ if ( ! class_exists( 'WPSEO_Video_Details' ) ) {
 		 * Set the video thumbnail url based on a typical json response
 		 *
 		 * @uses WPSEO_Video_Details::$decoded_response
+		 *
+		 * @return void
 		 */
 		protected function set_thumbnail_loc_from_json_object() {
 			if ( ! empty( $this->decoded_response->thumbnail_url ) ) {
@@ -538,6 +556,8 @@ if ( ! class_exists( 'WPSEO_Video_Details' ) ) {
 		 * Set the video width based on a typical json response
 		 *
 		 * @uses WPSEO_Video_Details::$decoded_response
+		 *
+		 * @return void
 		 */
 		protected function set_width_from_json_object() {
 			if ( ! empty( $this->decoded_response->width ) ) {
@@ -572,7 +592,7 @@ if ( ! class_exists( 'WPSEO_Video_Details' ) ) {
 						'numberposts' => 1,
 						'post_type'   => 'attachment',
 						'meta_key'    => 'wpseo_video_id',
-						'meta_value'  => isset( $vid['id'] ) ? $vid['id'] : '',
+						'meta_value'  => ( $vid['id'] ?? '' ),
 						'post_parent' => $vid['post_id'],
 						'fields'      => 'ids',
 					]
@@ -623,7 +643,7 @@ if ( ! class_exists( 'WPSEO_Video_Details' ) ) {
 
 					$ret = media_handle_sideload( $file_array, $vid['post_id'], 'Video thumbnail for ' . $vid['type'] . ' video ' . $vid['title'] );
 					if ( is_wp_error( $ret ) ) {
-						@unlink( $tmp );
+						wp_delete_file( $tmp );
 						return false;
 					}
 
@@ -652,7 +672,7 @@ if ( ! class_exists( 'WPSEO_Video_Details' ) ) {
 						return $file['url'];
 					}
 					else {
-						@unlink( $file );
+						wp_delete_file( $file );
 					}
 				}
 

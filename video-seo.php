@@ -3,21 +3,22 @@
  * Yoast SEO Video Plugin.
  *
  * @package   Yoast\VideoSEO
- * @copyright Copyright (C) 2012-2022 Yoast BV - support@yoast.com
+ * @copyright Copyright (C) 2012-2024 Yoast BV - support@yoast.com
  * @license   http://www.gnu.org/licenses/gpl-2.0.html GNU General Public License, version 2 or higher
  *
  * @wordpress-plugin
  * Plugin Name: Yoast SEO: Video
- * Version:     14.8
+ * Version:     14.9
  * Plugin URI:  https://yoa.st/4fh
  * Description: The Yoast Video SEO plugin makes sure your videos are recognized by search engines and social platforms, so they look good when found on these social platforms and in the search results.
  * Author:      Team Yoast
  * Author URI:  https://yoa.st/team-yoast-video
  * Text Domain: yoast-video-seo
  * Domain Path: /languages/
- * Requires at least: 6.1
+ * Requires at least: 6.4
  * Requires PHP: 7.2.5
  * Depends:     Yoast SEO
+ * Requires Yoast SEO: 22.8
  * License:     GPL v2
  *
  * This program is free software: you can redistribute it and/or modify
@@ -44,7 +45,7 @@ if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
 	require __DIR__ . '/vendor/autoload.php';
 }
 
-define( 'WPSEO_VIDEO_VERSION', '14.8' );
+define( 'WPSEO_VIDEO_VERSION', '14.9' );
 define( 'WPSEO_VIDEO_FILE', __FILE__ );
 
 require_once __DIR__ . '/video-seo-api.php';

@@ -142,6 +142,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Wistia' ) ) {
 		/**
 		 * Determine whether or not the use of the fallback method is needed and set video details
 		 * to their new values by passing off to the parent method
+		 *
+		 * @return void
 		 */
 		protected function put_video_details() {
 			if ( ! empty( $this->decoded_response->html ) ) {
@@ -163,6 +165,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Wistia' ) ) {
 
 		/**
 		 * Set the content location
+		 *
+		 * @return void
 		 */
 		protected function set_content_loc() {
 			if ( $this->use_fallback === false ) {
@@ -177,6 +181,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Wistia' ) ) {
 
 		/**
 		 * Set the video duration
+		 *
+		 * @return void
 		 */
 		protected function set_duration() {
 			$this->set_duration_from_json_object();
@@ -184,6 +190,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Wistia' ) ) {
 
 		/**
 		 * Set the video height
+		 *
+		 * @return void
 		 */
 		protected function set_height() {
 			$this->set_height_from_json_object();
@@ -191,6 +199,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Wistia' ) ) {
 
 		/**
 		 * Set the player location
+		 *
+		 * @return void
 		 */
 		protected function set_player_loc() {
 			if ( $this->use_fallback === false ) {
@@ -239,6 +249,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Wistia' ) ) {
 
 		/**
 		 * Set the thumbnail location
+		 *
+		 * @return void
 		 */
 		protected function set_thumbnail_loc() {
 			$this->set_thumbnail_loc_from_json_object();
@@ -246,6 +258,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Wistia' ) ) {
 
 		/**
 		 * Set the video width
+		 *
+		 * @return void
 		 */
 		protected function set_width() {
 			$this->set_width_from_json_object();

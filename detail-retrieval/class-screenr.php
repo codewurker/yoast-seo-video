@@ -68,6 +68,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Screenr' ) ) {
 
 		/**
 		 * Set the player location
+		 *
+		 * @return void
 		 */
 		protected function set_player_loc() {
 			if ( ! empty( $this->vid['id'] ) ) {

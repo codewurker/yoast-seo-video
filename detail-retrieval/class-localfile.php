@@ -189,7 +189,6 @@ if ( ! class_exists( 'WPSEO_Video_Details_Localfile' ) ) {
 				$extensions = explode( '|', WPSEO_Video_Sitemap::$video_ext_pattern );
 			}
 
-
 			/**
 			 * Absolute url
 			 */
@@ -382,6 +381,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Localfile' ) ) {
 
 		/**
 		 * Set video details to their new values
+		 *
+		 * @return void
 		 */
 		protected function put_video_details() {
 			// Only save the determined details to the vid array if we're sure it's a video.
@@ -394,6 +395,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Localfile' ) ) {
 
 		/**
 		 * Set the attachment id
+		 *
+		 * @return void
 		 */
 		protected function set_attachment_id() {
 			if ( ! empty( $this->attachment_id ) ) {
@@ -403,6 +406,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Localfile' ) ) {
 
 		/**
 		 * Set the content location
+		 *
+		 * @return void
 		 */
 		protected function set_content_loc() {
 			if ( ! empty( $this->file_url ) ) {
@@ -419,6 +424,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Localfile' ) ) {
 		 *
 		 *            {@link https://core.trac.wordpress.org/ticket/29176}
 		 *            Note: This was fixed in WP 4.1.}
+		 *
+		 * @return void
 		 */
 		protected function set_duration() {
 			if ( ! empty( $this->decoded_response['length'] ) && ! is_string( $this->decoded_response['length'] ) && $this->decoded_response['length'] > 0 ) {
@@ -446,6 +453,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Localfile' ) ) {
 
 		/**
 		 * Set the file path
+		 *
+		 * @return void
 		 */
 		protected function set_file_path() {
 			if ( ! empty( $this->file_path ) ) {
@@ -455,6 +464,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Localfile' ) ) {
 
 		/**
 		 * Set the file url
+		 *
+		 * @return void
 		 */
 		protected function set_file_url() {
 			if ( ! empty( $this->file_url ) ) {
@@ -464,6 +475,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Localfile' ) ) {
 
 		/**
 		 * Set the video height
+		 *
+		 * @return void
 		 */
 		protected function set_height() {
 			if ( ! empty( $this->decoded_response['height'] ) ) {
@@ -473,6 +486,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Localfile' ) ) {
 
 		/**
 		 * (Don't) Set the player location
+		 *
+		 * @return void
 		 */
 		protected function set_player_loc() {
 			return;
@@ -480,6 +495,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Localfile' ) ) {
 
 		/**
 		 * Set the thumbnail location - try and find a local image file for the video
+		 *
+		 * @return void
 		 */
 		protected function set_thumbnail_loc() {
 			if ( ! empty( $this->file_path ) && ! empty( $this->file_url ) ) {
@@ -505,6 +522,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Localfile' ) ) {
 
 		/**
 		 * (Don't) Set the video type - leave as is to prevent filters failing
+		 *
+		 * @return void
 		 */
 		protected function set_type() {
 			return;
@@ -512,6 +531,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Localfile' ) ) {
 
 		/**
 		 * Set the video width
+		 *
+		 * @return void
 		 */
 		protected function set_width() {
 			if ( ! empty( $this->decoded_response['width'] ) ) {

@@ -135,6 +135,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Vimeo' ) ) {
 		 * Deal with private videos separately.
 		 *
 		 * @since 3.9.0
+		 *
+		 * @return void
 		 */
 		protected function get_remote_video_info() {
 			parent::get_remote_video_info();
@@ -149,6 +151,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Vimeo' ) ) {
 
 		/**
 		 * Decode a remote response as json
+		 *
+		 * @return void
 		 */
 		protected function decode_as_json() {
 			$response = json_decode( $this->remote_response );
@@ -174,6 +178,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Vimeo' ) ) {
 
 		/**
 		 * Set the video duration
+		 *
+		 * @return void
 		 */
 		protected function set_duration() {
 			$this->set_duration_from_json_object();
@@ -181,6 +187,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Vimeo' ) ) {
 
 		/**
 		 * Set the video height
+		 *
+		 * @return void
 		 */
 		protected function set_height() {
 			$this->set_height_from_json_object();
@@ -188,6 +196,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Vimeo' ) ) {
 
 		/**
 		 * Set the player location
+		 *
+		 * @return void
 		 */
 		protected function set_player_loc() {
 			if ( ! empty( $this->vid['id'] ) ) {
@@ -197,6 +207,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Vimeo' ) ) {
 
 		/**
 		 * Set the thumbnail location
+		 *
+		 * @return void
 		 */
 		protected function set_thumbnail_loc() {
 			if ( isset( $this->decoded_response->thumbnail_large ) && is_string( $this->decoded_response->thumbnail_large ) && $this->decoded_response->thumbnail_large !== '' ) {
@@ -213,6 +225,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Vimeo' ) ) {
 
 		/**
 		 * Set the video width
+		 *
+		 * @return void
 		 */
 		protected function set_width() {
 			$this->set_width_from_json_object();
@@ -222,6 +236,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Vimeo' ) ) {
 		 * Set the video view count
 		 *
 		 * Property only available via full API call.
+		 *
+		 * @return void
 		 */
 		protected function set_view_count() {
 			if ( ! empty( $this->decoded_response->stats_number_of_plays ) ) {

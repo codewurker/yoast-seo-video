@@ -71,6 +71,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Oembed' ) ) {
 
 		/**
 		 * Set the video duration
+		 *
+		 * @return void
 		 */
 		protected function set_duration() {
 			$this->set_duration_from_json_object();
@@ -78,6 +80,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Oembed' ) ) {
 
 		/**
 		 * Set the video height
+		 *
+		 * @return void
 		 */
 		protected function set_height() {
 			$this->set_height_from_json_object();
@@ -85,6 +89,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Oembed' ) ) {
 
 		/**
 		 * Set the thumbnail location
+		 *
+		 * @return void
 		 */
 		protected function set_thumbnail_loc() {
 			$this->set_thumbnail_loc_from_json_object();
@@ -92,6 +98,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Oembed' ) ) {
 
 		/**
 		 * Set the video width
+		 *
+		 * @return void
 		 */
 		protected function set_width() {
 			$this->set_width_from_json_object();

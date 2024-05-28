@@ -39,6 +39,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Veoh' ) ) {
 
 		/**
 		 * Set the player location
+		 *
+		 * @return void
 		 */
 		protected function set_player_loc() {
 			if ( ! empty( $this->vid['id'] ) ) {
@@ -48,6 +50,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Veoh' ) ) {
 
 		/**
 		 * Set the thumbnail location
+		 *
+		 * @return void
 		 */
 		protected function set_thumbnail_loc() {
 			if ( ! empty( $this->vid['id'] ) ) {

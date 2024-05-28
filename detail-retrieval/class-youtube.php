@@ -98,6 +98,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Youtube' ) ) {
 
 		/**
 		 * Set the video last fetched.
+		 *
+		 * @return void
 		 */
 		protected function set_last_fetched() {
 			$this->vid['last_fetched'] = time();
@@ -105,6 +107,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Youtube' ) ) {
 
 		/**
 		 * Set the video duration
+		 *
+		 * @return void
 		 */
 		protected function set_duration() {
 			if ( ! empty( $this->decoded_response->contentDetails->duration ) ) {
@@ -117,6 +121,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Youtube' ) ) {
 
 		/**
 		 * Set the video height
+		 *
+		 * @return void
 		 */
 		protected function set_height() {
 			if ( ! empty( $this->decoded_response->player->embedHtml )
@@ -132,6 +138,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Youtube' ) ) {
 
 		/**
 		 * Set the player location
+		 *
+		 * @return void
 		 */
 		protected function set_player_loc() {
 			// Bow out if video is explicitely not embeddable - falls through if embeddable status not available.
@@ -159,6 +167,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Youtube' ) ) {
 
 		/**
 		 * Set the thumbnail location
+		 *
+		 * @return void
 		 */
 		protected function set_thumbnail_loc() {
 			$formats = [ 'maxres', 'standard', 'high', 'medium', 'default' ];
@@ -180,6 +190,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Youtube' ) ) {
 
 		/**
 		 * Set the video view count
+		 *
+		 * @return void
 		 */
 		protected function set_view_count() {
 			if ( ! empty( $this->decoded_response->statistics->viewCount ) ) {
@@ -189,6 +201,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Youtube' ) ) {
 
 		/**
 		 * Set the video width
+		 *
+		 * @return void
 		 */
 		protected function set_width() {
 			if ( ! empty( $this->decoded_response->player->embedHtml )
@@ -204,6 +218,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Youtube' ) ) {
 
 		/**
 		 * Extends the parent method. By letting the parent set the response and get the first item afterwards
+		 *
+		 * @return void
 		 */
 		protected function decode_as_json() {
 			parent::decode_as_json();

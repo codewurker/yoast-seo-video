@@ -6,6 +6,8 @@
  * @subpackage WordPress SEO Video
  */
 
+use Yoast\WP\SEO\Context\Meta_Tags_Context;
+
 /**
  * Initializes videoObject and attaches it to the rest of the Schema.
  *
@@ -17,7 +19,7 @@ class WPSEO_Video_Schema {
 	/**
 	 * The hash used in the video identifier.
 	 */
-	const VIDEO_HASH = '#video';
+	public const VIDEO_HASH = '#video';
 
 	/**
 	 * Video schema object.
@@ -38,8 +40,8 @@ class WPSEO_Video_Schema {
 	/**
 	 * Adds the videoObject graph piece.
 	 *
-	 * @param array                $pieces  The Schema pieces to output.
-	 * @param WPSEO_Schema_Context $context A value object with context variables.
+	 * @param array             $pieces  The Schema pieces to output.
+	 * @param Meta_Tags_Context $context A value object with context variables.
 	 *
 	 * @return array The Schema pieces to output.
 	 */
@@ -53,8 +55,8 @@ class WPSEO_Video_Schema {
 	/**
 	 * Changes Article Schema output.
 	 *
-	 * @param array                                    $data    Article Schema data.
-	 * @param \Yoast\WP\Free\Context\Meta_Tags_Context $context The meta tags context.
+	 * @param array             $data    Article Schema data.
+	 * @param Meta_Tags_Context $context The meta tags context.
 	 *
 	 * @return array Article Schema data.
 	 */
@@ -69,8 +71,8 @@ class WPSEO_Video_Schema {
 	/**
 	 * Changes WebPage Schema output.
 	 *
-	 * @param array                                    $data    WebPage Schema data.
-	 * @param \Yoast\WP\Free\Context\Meta_Tags_Context $context The meta tags context.
+	 * @param array             $data    WebPage Schema data.
+	 * @param Meta_Tags_Context $context The meta tags context.
 	 *
 	 * @return array WebPage Schema data.
 	 */
@@ -82,7 +84,7 @@ class WPSEO_Video_Schema {
 		/**
 		 * Filter: 'wpseo_schema_article_post_types' - Allow changing for which post types we output Article schema.
 		 *
-		 * @api string[] $post_types The post types for which we output Article.
+		 * @param string[] $post_types The post types for which we output Article.
 		 */
 		$post_types = apply_filters( 'wpseo_schema_article_post_types', [ 'post' ] ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Using a YoastSEO Free hook.
 

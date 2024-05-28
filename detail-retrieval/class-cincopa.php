@@ -69,6 +69,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Cincopa' ) ) {
 
 		/**
 		 * Set the player location
+		 *
+		 * @return void
 		 */
 		protected function set_player_loc() {
 			$url = $this->decoded_response->content->attributes()->url;
@@ -82,6 +84,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Cincopa' ) ) {
 		 *
 		 * @todo thumbnails are not working currently b/c $this->make_image_local() strips query parameters
 		 * and this video service needs query params to generate thumbnails, look for a more direct approach
+		 *
+		 * @return void
 		 */
 		protected function set_thumbnail_loc() {
 			$url = $this->decoded_response->content->attributes()->url;

@@ -41,7 +41,7 @@ if ( ! class_exists( 'WPSEO_Video_Details_Vidyard' ) ) {
 		/**
 		 * Information on the remote URL to use for retrieving the video details.
 		 *
-		 * @var string[]
+		 * @var array<string, string>
 		 */
 		protected $remote_url = [
 			'pattern'       => 'http://play.vidyard.com/%s',
@@ -68,6 +68,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Vidyard' ) ) {
 
 		/**
 		 * Set the content location
+		 *
+		 * @return void
 		 */
 		protected function set_content_loc() {
 			if ( ! empty( $this->chapter_data['sd_unsecure_url'] ) ) {
@@ -77,6 +79,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Vidyard' ) ) {
 
 		/**
 		 * Set the video duration
+		 *
+		 * @return void
 		 */
 		protected function set_duration() {
 			if ( ! empty( $this->chapter_data['seconds'] ) ) {
@@ -86,6 +90,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Vidyard' ) ) {
 
 		/**
 		 * Set the player location
+		 *
+		 * @return void
 		 */
 		protected function set_player_loc() {
 			if ( ( is_string( $this->remote_url['pattern'] ) && $this->remote_url['pattern'] !== '' )
@@ -99,6 +105,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Vidyard' ) ) {
 
 		/**
 		 * Set the thumbnail location
+		 *
+		 * @return void
 		 */
 		protected function set_thumbnail_loc() {
 			if ( preg_match( '`vidyard_thumbnail_data = ({.*?});`s', $this->decoded_response, $match ) ) {
@@ -120,6 +128,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Vidyard' ) ) {
 
 		/**
 		 * Get decoded vidyard chapter data
+		 *
+		 * @return void
 		 */
 		private function get_chapter_data() {
 			// Must use preg match because the data is in inline javascript.

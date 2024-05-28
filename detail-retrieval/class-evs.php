@@ -109,6 +109,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Evs' ) ) {
 
 		/**
 		 * Set the content location
+		 *
+		 * @return void
 		 */
 		protected function set_content_loc() {
 			if ( ! empty( $this->vid['url'] ) ) {
@@ -118,6 +120,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Evs' ) ) {
 
 		/**
 		 * Set the player location
+		 *
+		 * @return void
 		 */
 		protected function set_player_loc() {
 			if ( ! empty( $this->vid['url'] ) ) {
@@ -127,6 +131,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Evs' ) ) {
 
 		/**
 		 * Set the thumbnail location
+		 *
+		 * @return void
 		 */
 		protected function set_thumbnail_loc() {
 			if ( ( isset( $this->decoded_response->success ) && $this->decoded_response->success === true ) && ! empty( $this->decoded_response->thumbnail ) ) {

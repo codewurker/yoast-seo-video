@@ -40,7 +40,7 @@ if ( ! class_exists( 'WPSEO_Video_Details_Ustudio' ) ) {
 		/**
 		 * Information on the remote URL to use for retrieving the video details.
 		 *
-		 * @var string[]
+		 * @var array<string, string>
 		 */
 		protected $remote_url = [
 			'pattern'       => 'https://app.ustudio.com/embed/%s/config.json',
@@ -80,6 +80,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Ustudio' ) ) {
 
 		/**
 		 * Set the player location.
+		 *
+		 * @return void
 		 */
 		protected function set_player_loc() {
 			if ( ! empty( $this->vid['id'] ) ) {
@@ -130,6 +132,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Ustudio' ) ) {
 
 		/**
 		 * Set the thumbnail location
+		 *
+		 * @return void
 		 */
 		protected function set_thumbnail_loc() {
 			if ( ! empty( $this->first_video->images ) ) {
@@ -147,6 +151,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Ustudio' ) ) {
 
 		/**
 		 * Set the duration
+		 *
+		 * @return void
 		 */
 		protected function set_duration() {
 			if ( ! empty( $this->first_video->duration ) && is_numeric( $this->first_video->duration ) ) {
@@ -156,6 +162,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Ustudio' ) ) {
 
 		/**
 		 * Set the video height
+		 *
+		 * @return void
 		 */
 		protected function set_height() {
 			if ( ! empty( $this->transcode->height ) && is_numeric( $this->transcode->height ) ) {
@@ -165,6 +173,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Ustudio' ) ) {
 
 		/**
 		 * Set the video width
+		 *
+		 * @return void
 		 */
 		protected function set_width() {
 			if ( ! empty( $this->transcode->width ) && is_numeric( $this->transcode->width ) ) {
@@ -174,6 +184,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Ustudio' ) ) {
 
 		/**
 		 * Set the location of the content
+		 *
+		 * @return void
 		 */
 		protected function set_content_loc() {
 			if ( ! empty( $this->transcode->url ) ) {

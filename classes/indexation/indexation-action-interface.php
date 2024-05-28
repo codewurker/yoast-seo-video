@@ -31,6 +31,8 @@ interface WPSEO_Video_Indexation_Action_Interface {
 	 * @param int  $limit   The limit per query.
 	 * @param int  $offset  The offset of the query.
 	 * @param bool $reindex Whether to force reindex.
+	 *
+	 * @return void
 	 */
 	public function index( $limit, $offset, $reindex );
 }

@@ -43,7 +43,12 @@ class WPSEO_Video_Embed {
 					div.setAttribute( "data-id", youtubePlayers[ i ].dataset.id );
 					div.setAttribute( "tabindex", "0" );
 					div.setAttribute( "role", "button" );
-					div.setAttribute( "aria-label", "' . esc_attr__( 'Load YouTube video', 'yoast-video-seo' ) . '" );
+					div.setAttribute(
+						"aria-label", "'
+						/* translators: Hidden accessibility text. */
+						. esc_attr__( 'Load YouTube video', 'yoast-video-seo' )
+						. '"
+					);
 					div.innerHTML = videoSEOGenerateYouTubeThumbnail( youtubePlayers[ i ].dataset.id );
 					div.addEventListener( "click", videoSEOGenerateYouTubeIframe );
 					div.addEventListener( "keydown", videoSEOYouTubeThumbnailHandleKeydown );

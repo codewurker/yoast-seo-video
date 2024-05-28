@@ -7,6 +7,7 @@
  * @version    1.6.0
  */
 
+use Yoast\WP\SEO\Actions\Alert_Dismissal_Action;
 use Yoast\WP\SEO\Presenters\Admin\Meta_Fields_Presenter;
 
 // Avoid direct calls to this file.
@@ -25,6 +26,8 @@ if ( ! class_exists( 'WPSEO_Video_Metabox' ) ) {
 
 		/**
 		 * Class constructor
+		 *
+		 * @return void
 		 */
 		public function register_hooks() {
 			add_action( 'wpseo_tab_translate', [ $this, 'translate_meta_boxes' ] );
@@ -48,6 +51,8 @@ if ( ! class_exists( 'WPSEO_Video_Metabox' ) ) {
 		 *
 		 * IMPORTANT: if you want to add a new string (option) somewhere, make sure you add that array key to
 		 * the main meta box definition array in the class WPSEO_Meta() as well!!!!
+		 *
+		 * @return void
 		 */
 		public static function translate_meta_boxes() {
 			WPSEO_Meta::$meta_fields['video']['videositemap-disable']['title'] = __( 'Disable video', 'yoast-video-seo' );
@@ -189,6 +194,8 @@ if ( ! class_exists( 'WPSEO_Video_Metabox' ) ) {
 
 		/**
 		 * Enqueues the plugin scripts.
+		 *
+		 * @return void
 		 */
 		public function enqueue_scripts() {
 			if ( ! $this->should_show_metabox() ) {
@@ -224,10 +231,10 @@ if ( ! class_exists( 'WPSEO_Video_Metabox' ) ) {
 		/**
 		 * Localizes scripts for the videoplugin.
 		 *
-		 * @return array
+		 * @return array<string, bool|string>
 		 */
 		private function localize_video_script() {
-			$action                     = YoastSEO()->classes->get( \Yoast\WP\SEO\Actions\Alert_Dismissal_Action::class );
+			$action                     = YoastSEO()->classes->get( Alert_Dismissal_Action::class );
 			$video_reactification_alert = new WPSEO_Video_Editor_Reactification_Alert();
 			$is_dismissed               = $action->is_dismissed( $video_reactification_alert->alert_identifier );
 			$video_meta                 = WPSEO_Meta::get_value( 'video_meta', $GLOBALS['post']->ID );
@@ -260,7 +267,7 @@ if ( ! class_exists( 'WPSEO_Video_Metabox' ) ) {
 		 *                     if the translation file could not be found.
 		 */
 		protected function get_translations( $component ) {
-			$locale = \get_user_locale();
+			$locale = get_user_locale();
 
 			$file = plugin_dir_path( WPSEO_VIDEO_FILE ) . 'languages/' . $component . '-' . $locale . '.json';
 			if ( file_exists( $file ) ) {

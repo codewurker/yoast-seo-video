@@ -57,6 +57,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Spike' ) ) {
 		/**
 		 * Set the player location
 		 * http://media.mtvnservices.com/embed/mgid:arc:video:spike.com:27d5de4f-35f8-4565-8267-255ca62e3534.swf
+		 *
+		 * @return void
 		 */
 		protected function set_player_loc() {
 			if ( ! empty( $this->decoded_response->html ) ) {

@@ -103,6 +103,8 @@ class WPSEO_Video_Index_Command implements Command_Interface {
 	 * @param bool $reindex  Whether to force reindex.
 	 * @param int  $limit    The limit per query.
 	 * @param int  $interval The number of microseconds to sleep.
+	 *
+	 * @return void
 	 */
 	private function index_current_site( $reindex, $limit, $interval ) {
 		if ( ! is_plugin_active( $this->plugin_basename ) ) {
@@ -144,7 +146,7 @@ class WPSEO_Video_Index_Command implements Command_Interface {
 			$indexation_action->index( $limit, $offset, $reindex );
 			$progress->tick( $limit );
 			$offset += $limit;
-			\usleep( $interval );
+			usleep( $interval );
 			Utils\wp_clear_object_cache();
 		} while ( $offset <= $total );
 		$progress->finish();

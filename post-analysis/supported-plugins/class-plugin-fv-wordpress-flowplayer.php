@@ -60,7 +60,6 @@ if ( ! class_exists( 'WPSEO_Video_Plugin_FV_WordPress_Flowplayer' ) ) {
 				$vid['content_loc'] = $atts['src'];
 				$vid['maybe_local'] = true;
 
-
 				if ( isset( $atts['splash'] ) && preg_match( '`\.(?:' . WPSEO_Video_Sitemap::$image_ext_pattern . ')$`', $atts['splash'] ) ) {
 					$vid['thumbnail_loc'] = $atts['splash'];
 				}

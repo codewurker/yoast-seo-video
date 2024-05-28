@@ -41,11 +41,11 @@ class WPSEO_Video_Schema_VideoObject extends Abstract_Schema_Piece {
 	/**
 	 * WPSEO_Video_Schema_VideoObject constructor.
 	 *
-	 * @param WPSEO_Schema_Context $context A value object with context variables.
+	 * @param Meta_Tags_Context $context A value object with context variables.
 	 *
 	 * @return void
 	 */
-	public function __construct( WPSEO_Schema_Context $context ) {
+	public function __construct( Meta_Tags_Context $context ) {
 		$this->context = $context;
 	}
 
@@ -89,7 +89,7 @@ class WPSEO_Video_Schema_VideoObject extends Abstract_Schema_Piece {
 			'isPartOf'     => [ '@id' => $this->context->main_schema_id ],
 			'thumbnailUrl' => $this->video['thumbnail_loc'],
 			'description'  => $this->context->description,
-			'uploadDate'   => gmdate( 'Y-m-d', strtotime( $post->post_date ) ),
+			'uploadDate'   => $this->helpers->date->format( $post->post_date ),
 		];
 
 		if ( $this->context->has_article ) {
@@ -187,6 +187,8 @@ class WPSEO_Video_Schema_VideoObject extends Abstract_Schema_Piece {
 	 * Checks whether the description is empty and if so fixes that.
 	 *
 	 * @param WP_Post $post The post object.
+	 *
+	 * @return void
 	 */
 	private function check_description( WP_Post $post ) {
 		if ( empty( $this->data['description'] ) ) {

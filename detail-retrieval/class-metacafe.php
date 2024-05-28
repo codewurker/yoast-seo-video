@@ -69,6 +69,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Metacafe' ) ) {
 
 		/**
 		 * Set the content location
+		 *
+		 * @return void
 		 */
 		protected function set_content_loc() {
 			if ( preg_match( '`<media:content url="([^"]+)"`', $this->decoded_response, $match ) ) {
@@ -78,6 +80,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Metacafe' ) ) {
 
 		/**
 		 * Set the video duration
+		 *
+		 * @return void
 		 */
 		protected function set_duration() {
 			if ( preg_match( '`duration="(\d+)"`', $this->decoded_response, $match ) ) {
@@ -87,6 +91,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Metacafe' ) ) {
 
 		/**
 		 * Set the player location
+		 *
+		 * @return void
 		 */
 		protected function set_player_loc() {
 			if ( ! empty( $this->vid['id'] ) ) {
@@ -96,6 +102,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Metacafe' ) ) {
 
 		/**
 		 * Set the thumbnail location
+		 *
+		 * @return void
 		 */
 		protected function set_thumbnail_loc() {
 			if ( preg_match( '`<media:thumbnail url="([^"]+)"`', $this->decoded_response, $match ) ) {

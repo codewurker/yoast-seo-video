@@ -49,12 +49,16 @@ if ( ! class_exists( 'WPSEO_Video_Details_[SERVICENAME]' ) ) {
 
 		/**
 		 * Set the player location
+		 *
+		 * @return void
 		 */
 		protected function set_player_loc() {
 		}
 
 		/**
 		 * Set the thumbnail location
+		 *
+		 * @return void
 		 */
 		protected function set_thumbnail_loc() {
 		}

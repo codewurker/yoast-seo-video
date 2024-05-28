@@ -86,6 +86,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Funnyordie' ) ) {
 
 		/**
 		 * Create a video url based on a known video id and url template
+		 *
+		 * @return void
 		 */
 		protected function determine_video_url_from_id() {
 			if ( ( ! empty( $this->vid['id'] ) && strlen( $this->vid['id'] ) > 4 ) && $this->url_template !== '' ) {
@@ -95,6 +97,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Funnyordie' ) ) {
 
 		/**
 		 * Set the player location
+		 *
+		 * @return void
 		 */
 		protected function set_player_loc() {
 			if ( ! empty( $this->vid['id'] ) ) {

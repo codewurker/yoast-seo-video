@@ -32,7 +32,7 @@ if ( ! class_exists( 'WPSEO_Video_Plugin_Jetpack' ) ) {
 		/**
 		 * Shortcodes added by this plugin.
 		 *
-		 * @var array
+		 * @var array<string>
 		 */
 		private $shortcodes_to_add = [
 			'blip.tv',

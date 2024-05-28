@@ -205,9 +205,8 @@ class WPSEO_Video_Utils {
 		/**
 		 * Filter: 'wpseo_video_family_friendly' - Allow changing the family friendly setting for a video.
 		 *
-		 * @api bool $family_friendly Set to `false` to mark a video as _not_ family friendly.
-		 *
-		 * @param int $post_id Post ID.
+		 * @param bool $family_friendly Set to `false` to mark a video as _not_ family friendly.
+		 * @param int  $post_id         Post ID.
 		 */
 		$filter_return = apply_filters( 'wpseo_video_family_friendly', $family_friendly, $post_id );
 
@@ -241,6 +240,8 @@ class WPSEO_Video_Utils {
 	 * Load translations
 	 *
 	 * @since 11.1
+	 *
+	 * @return void
 	 */
 	public static function load_textdomain() {
 		load_plugin_textdomain( 'yoast-video-seo', false, dirname( plugin_basename( WPSEO_VIDEO_FILE ) ) . '/languages/' );

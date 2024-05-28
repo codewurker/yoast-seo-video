@@ -2,8 +2,8 @@
 
 Video SEO
 =========
-Requires at least: 6.1
-Tested up to: 6.3
+Requires at least: 6.4
+Tested up to: 6.5
 Stable tag: 13.9
 Requires PHP: 7.2.5
 Depends: Yoast SEO
@@ -36,6 +36,26 @@ You can find the [Video SEO FAQ](https://yoast.com/help/video-seo-faq/) in our h
 Changelog
 =========
 
+## 14.9
+
+Release date: 2024-05-28
+
+#### Enhancements
+
+* Enhances the `uploadDate` property of a `VideoObject` schema object, by turning it into a DateTime format instead of just Date, satisfying the newest recommendations for rich results.
+* Introduces a new way of retrieving translations for Yoast Video SEO, by utilizing the TranslationPress service. Instead of having to ship all translations with every release, we can now load the translations on a per-install basis, tailored to the user's setup. This means smaller plugin releases and less bloat on the user's server.
+
+#### Other
+
+* Fixes support for embedded TED videos.
+* Improves discoverability of the security policy.
+* Makes required PHP extensions explicit.
+* Renames all Twitter references to X.
+* Sets the minimum required Yoast SEO version to 22.8.
+* Sets the minimum supported WordPress version to 6.4.
+* Sets the WordPress tested up to version to 6.5.
+* Users requiring this package via [WP]Packagist can now use the `composer/installers` v2.
+
 ## 14.8
 
 Release date: 2023-08-08
@@ -55,34 +75,6 @@ Release date: 2023-08-08
 * Sets the minimum required Yoast SEO version to 20.13.
 * Sets the minimum supported WordPress version to 6.1.
 * Sets the tested up to WordPress version to 6.2.
-
-## 14.7
-
-Release date: 2023-03-14
-
-#### Enhancements
-
-* Improves the inline documentation for various filters.
-* Improves the usability of the `wpseo_video_{$type}_details` filter by adding a `$post_id` parameter.
-* Improves the usability of the `wpseo_video_family_friendly` filter by allowing to return `false` if the video is not family friendly.
-
-#### Bugfixes
-
-* Fixes a bug where a PHP8 deprecation notice would be thrown for `FILTER_SANITIZE_STRING`.
-* Fixes a bug where a Schema validation warning would be thrown about the `isFamilyFriendly` property in the `VideoObject` piece being set to a string instead of a boolean value.
-* Fixes a bug where the link to the _XML sitemaps_ settings would be incorrect when _XML sitemaps_ were disabled.
-* Fixes a bug where the _video title_ assessment and the _video body_ assessment would also appear under the Readability analysis tab when the Cornerstone content toggle would be switched on.
-
-#### Other
-
-* Improves the compatibility with PHP 8.1.
-* Reduces noise from PHP 8.1 deprecations.
-* Sets the minimum required Yoast SEO version to 20.3.
-* Sets the minimum supported WordPress version to 6.0.
-* Support for the [Flowplayer5](https://wordpress.org/plugins/flowplayer5/) plugin has been dropped as the plugin is no longer supported by the author.
-* Support for the [JW Player for WordPress](https://wordpress.org/plugins/jw-player-plugin-for-wordpress/) plugin has been dropped as the plugin is no longer supported by the author.
-* Support for the [Smart YouTube](https://wordpress.org/plugins/smart-youtube/) plugin has been dropped as the plugin is no longer supported by the author.
-* Support for the [TubePress](https://wordpress.org/plugins/tubepress/) plugin has been dropped as the plugin is no longer supported by the author.
 
 ### Earlier versions
 For the changelog of earlier versions, please refer to [the changelog on yoast.com](https://yoa.st/video-seo-changelog).

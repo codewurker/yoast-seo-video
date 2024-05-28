@@ -73,6 +73,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Collegehumor' ) ) {
 		 * Set the player location
 		 *
 		 * @todo - or should we parse the embed url from decoded_response->html ?
+		 *
+		 * @return void
 		 */
 		protected function set_player_loc() {
 			if ( ! empty( $this->vid['id'] ) ) {

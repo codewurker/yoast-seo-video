@@ -110,6 +110,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Flickr' ) ) {
 
 		/**
 		 * Set the video duration
+		 *
+		 * @return void
 		 */
 		protected function set_duration() {
 			if ( ! empty( $this->decoded_response->photo->video->duration ) ) {
@@ -119,6 +121,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Flickr' ) ) {
 
 		/**
 		 * Set the video height
+		 *
+		 * @return void
 		 */
 		protected function set_height() {
 			if ( ! empty( $this->decoded_response->photo->video->height ) ) {
@@ -128,6 +132,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Flickr' ) ) {
 
 		/**
 		 * Set the video id
+		 *
+		 * @return void
 		 */
 		protected function set_id() {
 			if ( ! empty( $this->decoded_response->photo->id ) ) {
@@ -137,6 +143,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Flickr' ) ) {
 
 		/**
 		 * Set the player location
+		 *
+		 * @return void
 		 */
 		protected function set_player_loc() {
 			if ( ! empty( $this->decoded_response->photo->secret ) && ! empty( $this->vid['id'] ) ) {
@@ -146,6 +154,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Flickr' ) ) {
 
 		/**
 		 * Set the thumbnail location
+		 *
+		 * @return void
 		 */
 		protected function set_thumbnail_loc() {
 			if ( ( ! empty( $this->decoded_response->photo->farm ) && ! empty( $this->decoded_response->photo->server ) )
@@ -164,6 +174,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Flickr' ) ) {
 
 		/**
 		 * Set the video view count
+		 *
+		 * @return void
 		 */
 		protected function set_view_count() {
 			if ( ! empty( $this->decoded_response->photo->views ) ) {
@@ -173,6 +185,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Flickr' ) ) {
 
 		/**
 		 * Set the video width
+		 *
+		 * @return void
 		 */
 		protected function set_width() {
 			if ( ! empty( $this->decoded_response->photo->video->width ) ) {

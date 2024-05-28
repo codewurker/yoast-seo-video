@@ -112,6 +112,8 @@ class WPSEO_Video_Wrappers {
 	 * @param string   $name     The name of the sitemap.
 	 * @param callable $callback Function to build your sitemap.
 	 * @param string   $rewrite  Optional. Regular expression to match your sitemap with.
+	 *
+	 * @return void
 	 */
 	public static function register_sitemap( $name, $callback, $rewrite = '' ) {
 		// WPSEO 1.4.23+.
@@ -128,6 +130,8 @@ class WPSEO_Video_Wrappers {
 	 * @param string   $name     The name of the XSL file.
 	 * @param callable $callback Function to build your XSL file.
 	 * @param string   $rewrite  Optional. Regular expression to match your sitemap with.
+	 *
+	 * @return void
 	 */
 	public static function register_xsl( $name, $callback, $rewrite = '' ) {
 		// WPSEO 1.4.23+.
@@ -142,6 +146,8 @@ class WPSEO_Video_Wrappers {
 	 * @since 4.1
 	 *
 	 * @param string $sitemap The generated sitemap to output.
+	 *
+	 * @return void
 	 */
 	public static function set_sitemap( $sitemap ) {
 		// WPSEO 1.4.23+.
@@ -156,6 +162,8 @@ class WPSEO_Video_Wrappers {
 	 * @since 4.1
 	 *
 	 * @param string $stylesheet Full xml-stylesheet declaration.
+	 *
+	 * @return void
 	 */
 	public static function set_stylesheet( $stylesheet ) {
 		if ( isset( $GLOBALS['wpseo_sitemaps'] ) && is_object( $GLOBALS['wpseo_sitemaps'] ) ) {

@@ -75,6 +75,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Videojug' ) ) {
 
 		/**
 		 * (Re-)Set the video id
+		 *
+		 * @return void
 		 */
 		protected function set_id() {
 			if ( ! empty( $this->decoded_response->id ) ) {
@@ -84,6 +86,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Videojug' ) ) {
 
 		/**
 		 * Set the player location
+		 *
+		 * @return void
 		 */
 		protected function set_player_loc() {
 			if ( ! empty( $this->vid['id'] ) ) {

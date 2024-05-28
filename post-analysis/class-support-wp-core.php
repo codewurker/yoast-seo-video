@@ -36,7 +36,7 @@ if ( ! class_exists( 'WPSEO_Video_Support_Core' ) ) {
 		 *
 		 * @var string
 		 */
-		protected $att_regex = '`(?:src|mp4|m4v|webm|ogv|wmv|flv)=([\'"])?([^\'"\s]+)[\1\s]?`';
+		protected $att_regex = '`(?:src|mp4|m4v|webm|ogv|flv)=([\'"])?([^\'"\s]+)[\1\s]?`';
 
 		/**
 		 * Conditionally add features to analyse for video content
@@ -56,18 +56,13 @@ if ( ! class_exists( 'WPSEO_Video_Support_Core' ) ) {
 
 			// OEmbed url (well, without the protocol or {format} tags) as specified in plugin => VideoSEO service name.
 			$this->video_oembeds = [
-				'//blip.tv/oembed/'                     => 'blip',
 				'//www.dailymotion.com/services/oembed' => 'dailymotion',
 				'//www.flickr.com/services/oembed/'     => 'flickr',
-				'//www.funnyordie.com/oembed'           => 'funnyordie',
-				'//www.hulu.com/api/oembed'             => 'hulu',
-				'//revision3.com/api/oembed/'           => 'revision3',
 				'//vimeo.com/api/oembed'                => 'vimeo',
 				'//wordpress.tv/oembed/'                => 'wordpresstv',
 				'//www.youtube.com/oembed'              => 'youtube',
 				'//animoto.com/oembeds/create'          => 'animoto',
-				'//www.collegehumor.com/oembed'         => 'collegehumor',
-				'//www.ted.com/talks/oembed'            => 'ted',
+				'//www.ted.com/services/v1/oembed'      => 'ted',
 			];
 		}
 

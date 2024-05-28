@@ -119,7 +119,6 @@ if ( ! class_exists( 'WPSEO_Video_Plugin_Advanced_Responsive_Video_Embedder' ) )
 				}
 			}
 
-
 			if ( class_exists( 'Advanced_Responsive_Video_Embedder_Shared' ) || function_exists( 'arve_get_host_properties' ) ) {
 				$arve_properties = [];
 				if ( method_exists( 'Advanced_Responsive_Video_Embedder_Shared', 'get_properties' ) ) {

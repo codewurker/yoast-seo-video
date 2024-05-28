@@ -69,6 +69,8 @@ if ( ! class_exists( 'WPSEO_Video_Plugin_Ustudio' ) ) {
 		 * Centralized code for generating video info from shortcode attributes.
 		 *
 		 * @param array $atts Shortcode attributes.
+		 *
+		 * @return array
 		 */
 		public function get_vid_from_atts( $atts ) {
 			$vid = [];

@@ -99,6 +99,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Hulu' ) ) {
 
 		/**
 		 * Set the player location
+		 *
+		 * @return void
 		 */
 		protected function set_player_loc() {
 			if ( ! empty( $this->decoded_response->embed_url ) ) {

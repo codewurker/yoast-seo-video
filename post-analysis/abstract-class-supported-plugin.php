@@ -34,7 +34,7 @@ if ( ! class_exists( 'WPSEO_Video_Supported_Plugin' ) ) {
 		 *
 		 * {@internal Should be set from the class constructor!}
 		 *
-		 * @var array
+		 * @var array<string>
 		 */
 		protected $shortcodes = [];
 
@@ -72,7 +72,7 @@ if ( ! class_exists( 'WPSEO_Video_Supported_Plugin' ) ) {
 		 *
 		 * {@internal Should be set from the class constructor!}
 		 *
-		 * @var array
+		 * @var array<string, string>
 		 */
 		protected $video_autoembeds = [];
 
@@ -83,7 +83,7 @@ if ( ! class_exists( 'WPSEO_Video_Supported_Plugin' ) ) {
 		 *
 		 * {@internal Should be set from the class constructor!}
 		 *
-		 * @var array
+		 * @var array<string, string>
 		 */
 		protected $video_oembeds = [];
 

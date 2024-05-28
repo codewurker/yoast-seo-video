@@ -114,6 +114,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Screencast' ) ) {
 
 		/**
 		 * Set the video height
+		 *
+		 * @return void
 		 */
 		protected function set_height() {
 			if ( ! empty( $this->decoded_response['containerheight'] ) ) {
@@ -123,6 +125,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Screencast' ) ) {
 
 		/**
 		 * Set the player location
+		 *
+		 * @return void
 		 */
 		protected function set_player_loc() {
 			if ( ! empty( $this->decoded_response['content'] ) ) {
@@ -132,6 +136,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Screencast' ) ) {
 
 		/**
 		 * Set the thumbnail location
+		 *
+		 * @return void
 		 */
 		protected function set_thumbnail_loc() {
 			if ( isset( $this->decoded_response['thumb'] ) && is_string( $this->decoded_response['thumb'] ) && $this->decoded_response['thumb'] !== '' ) {
@@ -144,6 +150,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Screencast' ) ) {
 
 		/**
 		 * Set the video width
+		 *
+		 * @return void
 		 */
 		protected function set_width() {
 			if ( ! empty( $this->decoded_response['containerwidth'] ) ) {

@@ -60,6 +60,8 @@ class WPSEO_Video_Post_Indexation_Action implements WPSEO_Video_Indexation_Actio
 	 * @param int  $limit   The limit per query.
 	 * @param int  $offset  The offset of the query.
 	 * @param bool $reindex Whether to force reindex.
+	 *
+	 * @return void
 	 */
 	public function index( $limit, $offset, $reindex ) {
 		require_once ABSPATH . 'wp-admin/includes/media.php';

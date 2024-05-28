@@ -58,6 +58,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Muzutv' ) ) {
 
 		/**
 		 * Set the video duration
+		 *
+		 * @return void
 		 */
 		protected function set_duration() {
 			$duration = $this->decoded_response->content->attributes()->duration;
@@ -68,6 +70,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Muzutv' ) ) {
 
 		/**
 		 * Set the video height
+		 *
+		 * @return void
 		 */
 		protected function set_height() {
 			$height = $this->decoded_response->content->attributes()->height;
@@ -78,6 +82,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Muzutv' ) ) {
 
 		/**
 		 * Set the player location
+		 *
+		 * @return void
 		 */
 		protected function set_player_loc() {
 			if ( ! empty( $this->vid['id'] ) ) {
@@ -87,6 +93,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Muzutv' ) ) {
 
 		/**
 		 * Set the thumbnail location
+		 *
+		 * @return void
 		 */
 		protected function set_thumbnail_loc() {
 			if ( ! empty( $this->xml->channel->image->url ) ) {
@@ -99,6 +107,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Muzutv' ) ) {
 
 		/**
 		 * Set the video view count
+		 *
+		 * @return void
 		 */
 		protected function set_view_count() {
 			$views = $this->xml->channel->item->children( 'http://www.muzu.tv/schemas/muzu/1.0' )->video->info->attributes()->views;
@@ -109,6 +119,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Muzutv' ) ) {
 
 		/**
 		 * Set the video width
+		 *
+		 * @return void
 		 */
 		protected function set_width() {
 			$width = $this->decoded_response->content->attributes()->width;

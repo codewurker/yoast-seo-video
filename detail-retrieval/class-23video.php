@@ -100,6 +100,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_23video' ) ) {
 
 		/**
 		 * Retrieve information on a video via a remote API call
+		 *
+		 * @return void
 		 */
 		protected function get_remote_video_info() {
 			if ( empty( $this->vid['id'] ) && ! empty( $this->vid['permalink'] ) ) {
@@ -114,6 +116,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_23video' ) ) {
 
 		/**
 		 * Decode a remote response for a number of typical response types
+		 *
+		 * @return void
 		 */
 		protected function decode_remote_video_info() {
 			if ( ! empty( $this->remote_response ) ) {
@@ -164,6 +168,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_23video' ) ) {
 
 		/**
 		 * Set video details to their new values
+		 *
+		 * @return void
 		 */
 		protected function put_video_details() {
 			$this->set_subdomain();
@@ -175,6 +181,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_23video' ) ) {
 		 *
 		 * {@internal If this is changed to another property, the width/height properties need to change too.
 		 *            Alternative set could be video_medium_download / video_medium_width / video_medium_height.}
+		 *
+		 * @return void
 		 */
 		protected function set_content_loc() {
 			if ( ! empty( $this->decoded_response->photo->standard_download ) && ! empty( $this->vid['subdomain'] ) ) {
@@ -185,6 +193,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_23video' ) ) {
 
 		/**
 		 * Set the video duration
+		 *
+		 * @return void
 		 */
 		protected function set_duration() {
 			if ( ! empty( $this->decoded_response->photo->video_length ) ) {
@@ -194,6 +204,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_23video' ) ) {
 
 		/**
 		 * Set the video height
+		 *
+		 * @return void
 		 */
 		protected function set_height() {
 			if ( ! empty( $this->decoded_response->photo->standard_height ) ) {
@@ -203,6 +215,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_23video' ) ) {
 
 		/**
 		 * Set the video id (as it might not be set - permalink based retrieval)
+		 *
+		 * @return void
 		 */
 		protected function set_id() {
 			if ( ! empty( $this->decoded_response->photo->photo_id ) ) {
@@ -216,6 +230,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_23video' ) ) {
 		 * {@internal Alternative options:
 		 * https://[subdomain].23video.com/v.swf?photo_id=[photo->photo_id]&autoPlay=1
 		 * https://[subdomain].23video.com/[photo->tree_id].ihtml?photo_id=[photo->photo_id]&token=[photo->token]&autoPlay=1&defaultQuality=high }
+		 *
+		 * @return void
 		 */
 		protected function set_player_loc() {
 			if ( ! empty( $this->vid['id'] ) && ! empty( $this->vid['subdomain'] ) ) {
@@ -225,6 +241,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_23video' ) ) {
 
 		/**
 		 * Verify and set the subdomain
+		 *
+		 * @return void
 		 */
 		protected function set_subdomain() {
 			if ( ! empty( $this->decoded_response->site->domain ) && $this->decoded_response->site->domain !== $this->vid['subdomain'] . '.23video.com' ) {
@@ -237,6 +255,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_23video' ) ) {
 		 *
 		 * {@internal Possible alternative:
 		 * https://[subdomain].23video.com/[photo->tree_id]/[photo->photo_id]/[photo->token]/large }
+		 *
+		 * @return void
 		 */
 		protected function set_thumbnail_loc() {
 			if ( isset( $this->decoded_response->photo->video_frames_download ) && ( is_string( $this->decoded_response->photo->video_frames_download ) && $this->decoded_response->photo->video_frames_download !== '' ) && ! empty( $this->vid['subdomain'] ) ) {
@@ -250,6 +270,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_23video' ) ) {
 
 		/**
 		 * Set the video view count
+		 *
+		 * @return void
 		 */
 		protected function set_view_count() {
 			if ( ! empty( $this->decoded_response->photo->view_count ) ) {
@@ -259,6 +281,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_23video' ) ) {
 
 		/**
 		 * Set the video width
+		 *
+		 * @return void
 		 */
 		protected function set_width() {
 			if ( ! empty( $this->decoded_response->photo->standard_width ) ) {

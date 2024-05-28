@@ -114,6 +114,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Embedly' ) ) {
 		/**
 		 * Retrieve information on a video via a remote API call and prevent further API calls
 		 * if the user has been cut off.
+		 *
+		 * @return void
 		 */
 		protected function get_remote_video_info() {
 			$response = parent::get_remote_video_info();
@@ -125,6 +127,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Embedly' ) ) {
 
 		/**
 		 * Set the player location
+		 *
+		 * @return void
 		 */
 		protected function set_player_loc() {
 			if ( ! empty( $this->decoded_response->html ) ) {
@@ -137,6 +141,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Embedly' ) ) {
 
 		/**
 		 * Set the video type
+		 *
+		 * @return void
 		 */
 		protected function set_type() {
 			if ( ! empty( $this->decoded_response->provider_name ) ) {

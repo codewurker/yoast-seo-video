@@ -48,7 +48,7 @@ if ( ! class_exists( 'WPSEO_Video_Details_Viddler' ) ) {
 		/**
 		 * Information on the remote URL to use for retrieving the video details.
 		 *
-		 * @var string[]
+		 * @var array<string, string>
 		 */
 		protected $remote_url = [
 			'pattern'       => 'http://api.viddler.com/api/v2/viddler.videos.getDetails.php?key=0118093f713643444556524f452f&add_embed_code=1&video_id=%s',
@@ -108,6 +108,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Viddler' ) ) {
 
 		/**
 		 * Set video details to their new values (mostly by passing off to the parent method)
+		 *
+		 * @return void
 		 */
 		protected function put_video_details() {
 			$this->get_video_file_data();
@@ -116,6 +118,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Viddler' ) ) {
 
 		/**
 		 * Retrieve the file we want to use from the remote response
+		 *
+		 * @return void
 		 */
 		protected function get_video_file_data() {
 			if ( isset( $this->decoded_response['video']['files'] ) && is_array( $this->decoded_response['video']['files'] ) && $this->decoded_response['video']['files'] !== [] ) {
@@ -130,6 +134,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Viddler' ) ) {
 
 		/**
 		 * Set the content location
+		 *
+		 * @return void
 		 */
 		protected function set_content_loc() {
 			if ( isset( $this->video_file['url'] ) && ( is_string( $this->video_file['url'] ) && $this->video_file['url'] !== '' ) ) {
@@ -143,6 +149,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Viddler' ) ) {
 
 		/**
 		 * Set the video duration
+		 *
+		 * @return void
 		 */
 		protected function set_duration() {
 			if ( ! empty( $this->decoded_response['video']['length'] ) ) {
@@ -152,6 +160,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Viddler' ) ) {
 
 		/**
 		 * Set the video height
+		 *
+		 * @return void
 		 */
 		protected function set_height() {
 			if ( ! empty( $this->video_file['height'] ) ) {
@@ -164,6 +174,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Viddler' ) ) {
 
 		/**
 		 * (Re-)Set the video id
+		 *
+		 * @return void
 		 */
 		protected function set_id() {
 			if ( ! empty( $this->decoded_response['video']['id'] ) ) {
@@ -173,6 +185,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Viddler' ) ) {
 
 		/**
 		 * Set the player location
+		 *
+		 * @return void
 		 */
 		protected function set_player_loc() {
 			if ( ! empty( $this->vid['id'] ) ) {
@@ -182,6 +196,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Viddler' ) ) {
 
 		/**
 		 * Set the thumbnail location
+		 *
+		 * @return void
 		 */
 		protected function set_thumbnail_loc() {
 			if ( isset( $this->decoded_response['video']['thumbnail_url'] ) && is_string( $this->decoded_response['video']['thumbnail_url'] ) && $this->decoded_response['video']['thumbnail_url'] !== '' ) {
@@ -194,6 +210,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Viddler' ) ) {
 
 		/**
 		 * Set the video view count
+		 *
+		 * @return void
 		 */
 		protected function set_view_count() {
 			if ( ! empty( $this->decoded_response['video']['view_count'] ) ) {
@@ -203,6 +221,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Viddler' ) ) {
 
 		/**
 		 * Set the video width
+		 *
+		 * @return void
 		 */
 		protected function set_width() {
 			if ( ! empty( $this->video_file['width'] ) ) {

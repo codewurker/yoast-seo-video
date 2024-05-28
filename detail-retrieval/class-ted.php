@@ -82,7 +82,7 @@ if ( ! class_exists( 'WPSEO_Video_Details_Ted' ) ) {
 		 * @var string[]
 		 */
 		protected $remote_url = [
-			'pattern'       => 'http://www.ted.com/talks/oembed.json?url=%s',
+			'pattern'       => 'http://www.ted.com/services/v1/oembed.json?url=%s',
 			'replace_key'   => 'url',
 			'response_type' => 'json',
 		];
@@ -160,6 +160,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Ted' ) ) {
 		 * Set the player location
 		 *
 		 * @todo - verify if this is the correct setting for content_loc
+		 *
+		 * @return void
 		 */
 		protected function set_content_loc() {
 			if ( ! empty( $this->decoded_response->url ) ) {
@@ -169,6 +171,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Ted' ) ) {
 
 		/**
 		 * Set the video id
+		 *
+		 * @return void
 		 */
 		protected function set_id() {
 			if ( ! empty( $this->decoded_response->url ) ) {
@@ -178,6 +182,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Ted' ) ) {
 
 		/**
 		 * Set the player location
+		 *
+		 * @return void
 		 */
 		protected function set_player_loc() {
 			if ( ! empty( $this->vid['id'] ) ) {

@@ -18,8 +18,6 @@ if ( ! class_exists( 'WPSEO_Option_Video' ) ) {
 
 	/**
 	 * Class WPSEO_Option_Video
-	 *
-	 * @phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedClassFound -- This actually extends / builds upon WPSEO_Option, so it sorta makes sense.
 	 */
 	class WPSEO_Option_Video extends WPSEO_Option {
 
@@ -35,7 +33,7 @@ if ( ! class_exists( 'WPSEO_Option_Video' ) ) {
 		 *
 		 * Shouldn't be requested directly, use $this->get_defaults();
 		 *
-		 * @var array
+		 * @var array<string, int|bool|string|array<mixed>>
 		 */
 		protected $defaults = [
 			// Non-form fields, set via validation routine / license activation method.
@@ -71,6 +69,8 @@ if ( ! class_exists( 'WPSEO_Option_Video' ) ) {
 
 		/**
 		 * Registers the option with the options framework.
+		 *
+		 * @return void
 		 */
 		public static function register_option() {
 			WPSEO_Options::register_option( self::get_instance() );
@@ -88,11 +88,11 @@ if ( ! class_exists( 'WPSEO_Option_Video' ) ) {
 		/**
 		 * Validate the option
 		 *
-		 * @param array $dirty New value for the option.
-		 * @param array $clean Clean value for the option, normally the defaults.
-		 * @param array $old   Old value of the option.
+		 * @param array<string, mixed> $dirty New value for the option.
+		 * @param array<string, mixed> $clean Clean value for the option, normally the defaults.
+		 * @param array<string, mixed> $old   Old value of the option.
 		 *
-		 * @return array Validated clean value for the option to be saved to the database
+		 * @return array<string, mixed> Validated clean value for the option to be saved to the database
 		 */
 		protected function validate_option( $dirty, $clean, $old ) {
 

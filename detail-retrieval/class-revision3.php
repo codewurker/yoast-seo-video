@@ -65,6 +65,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Revision3' ) ) {
 
 		/**
 		 * Set the video id
+		 *
+		 * @return void
 		 */
 		protected function set_id() {
 			if ( ! empty( $this->decoded_response->html ) && preg_match( '`[&\?]videoId=([0-9]+)`', $this->decoded_response->html, $match ) ) {
@@ -74,6 +76,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Revision3' ) ) {
 
 		/**
 		 * Set the player location
+		 *
+		 * @return void
 		 */
 		protected function set_player_loc() {
 			if ( ! empty( $this->vid['id'] ) ) {

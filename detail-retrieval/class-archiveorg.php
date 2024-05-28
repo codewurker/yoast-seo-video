@@ -71,6 +71,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Archiveorg' ) ) {
 
 		/**
 		 * Set video details to their new values
+		 *
+		 * @return void
 		 */
 		protected function put_video_details() {
 			$this->get_video_file_data();
@@ -79,6 +81,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Archiveorg' ) ) {
 
 		/**
 		 * Determine which file in the files array contains the information we need.
+		 *
+		 * @return void
 		 */
 		protected function get_video_file_data() {
 			$video_files = [];
@@ -137,6 +141,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Archiveorg' ) ) {
 
 		/**
 		 * Set the content location
+		 *
+		 * @return void
 		 */
 		protected function set_content_loc() {
 			if ( ! empty( $this->vid['id'] ) && ! empty( $this->video_file->file_name ) ) {
@@ -150,6 +156,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Archiveorg' ) ) {
 
 		/**
 		 * Set the video duration
+		 *
+		 * @return void
 		 */
 		protected function set_duration() {
 			if ( ! empty( $this->decoded_response->metadata->runtime[0] ) ) {
@@ -163,6 +171,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Archiveorg' ) ) {
 
 		/**
 		 * Set the video height
+		 *
+		 * @return void
 		 */
 		protected function set_height() {
 			if ( ! empty( $this->decoded_response->metadata->height[0] ) ) {
@@ -175,6 +185,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Archiveorg' ) ) {
 
 		/**
 		 * Set the video id
+		 *
+		 * @return void
 		 */
 		protected function set_id() {
 			if ( ! empty( $this->decoded_response->metadata->identifier[0] ) ) {
@@ -184,6 +196,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Archiveorg' ) ) {
 
 		/**
 		 * Set the player location
+		 *
+		 * @return void
 		 */
 		protected function set_player_loc() {
 			if ( ! empty( $this->vid['id'] ) ) {
@@ -195,6 +209,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Archiveorg' ) ) {
 		 * Set the thumbnail location
 		 *
 		 * @todo decide whether the order is correct - should the thumb permalink be tried first or the misc image ?
+		 *
+		 * @return void
 		 */
 		protected function set_thumbnail_loc() {
 			if ( ! empty( $this->vid['id'] ) ) {
@@ -216,6 +232,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Archiveorg' ) ) {
 		 * Set the video view count
 		 *
 		 * @todo [JRF -> Yoast] is using the download count acceptable here ?
+		 *
+		 * @return void
 		 */
 		protected function set_view_count() {
 			if ( ! empty( $this->decoded_response->item->downloads ) ) {
@@ -225,6 +243,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Archiveorg' ) ) {
 
 		/**
 		 * Set the video width
+		 *
+		 * @return void
 		 */
 		protected function set_width() {
 			if ( ! empty( $this->decoded_response->metadata->width[0] ) ) {

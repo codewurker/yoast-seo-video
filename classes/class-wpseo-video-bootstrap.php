@@ -84,6 +84,9 @@ class WPSEO_Video_Bootstrap {
 
 		$editor_reactification_alert = new WPSEO_Video_Editor_Reactification_Alert();
 		$editor_reactification_alert->register_hooks();
+
+		$translationspress = new WPSEO_Video_TranslationsPress( YoastSEO()->helpers->date );
+		$translationspress->register_hooks();
 	}
 
 	/**
@@ -377,7 +380,7 @@ class WPSEO_Video_Bootstrap {
 	 * @return bool True if WordPress is at a minimal required version.
 	 */
 	protected function is_wordpress_up_to_date() {
-		return version_compare( $GLOBALS['wp_version'], '6.1', '>=' );
+		return version_compare( $GLOBALS['wp_version'], '6.4', '>=' );
 	}
 
 	/**
@@ -395,7 +398,7 @@ class WPSEO_Video_Bootstrap {
 	 * @return bool True if Yoast SEO is at a minimal required version.
 	 */
 	protected function is_yoast_seo_up_to_date() {
-		return $this->is_yoast_seo_active() && version_compare( WPSEO_VERSION, '20.13-RC0', '>=' );
+		return $this->is_yoast_seo_active() && version_compare( WPSEO_VERSION, '22.8-RC0', '>=' );
 	}
 
 	/**

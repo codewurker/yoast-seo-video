@@ -61,7 +61,7 @@ if ( ! class_exists( 'WPSEO_Video_Analyse_Post' ) ) {
 		 *            - Add one of more unit test file(s) for the features supported by the plugin.
 		 *            - Add the plugin to travis.yml for download via git/svn.}
 		 *
-		 * @var array
+		 * @var array<string, string>
 		 */
 		public static $supported_plugins = [
 			'Jetpack'                            => 'jetpack/jetpack.php',
@@ -82,7 +82,7 @@ if ( ! class_exists( 'WPSEO_Video_Analyse_Post' ) ) {
 		 *
 		 * Format: key = class name suffix, value = object instance.
 		 *
-		 * @var array
+		 * @var array<string, object>
 		 */
 		protected static $active_plugins = [];
 
@@ -140,7 +140,7 @@ if ( ! class_exists( 'WPSEO_Video_Analyse_Post' ) ) {
 		/**
 		 * The video info array.
 		 *
-		 * @var array
+		 * @var array<string, mixed>
 		 */
 		protected $vid = [
 			'id'   => null,
@@ -202,10 +202,9 @@ if ( ! class_exists( 'WPSEO_Video_Analyse_Post' ) ) {
 			/**
 			 * Filter: 'wpseo_video_index_content' - Allow changing the content of a post before indexation.
 			 *
-			 * @api string $content The content to analyze.
-			 *
-			 * @param array    $vid  Array with video info, usually empty.
-			 * @param \WP_Post $post Post object.
+			 * @param string  $content The content to analyze.
+			 * @param array   $vid     Array with video info, usually empty.
+			 * @param WP_Post $post    Post object.
 			 */
 			$content = apply_filters( 'wpseo_video_index_content', $content, $this->vid, $this->post );
 
@@ -232,6 +231,8 @@ if ( ! class_exists( 'WPSEO_Video_Analyse_Post' ) ) {
 
 		/**
 		 * Reset statics
+		 *
+		 * @return void
 		 */
 		public static function reset_statics() {
 			self::$dom_enabled      = false;
@@ -246,6 +247,8 @@ if ( ! class_exists( 'WPSEO_Video_Analyse_Post' ) ) {
 
 		/**
 		 * Set statics
+		 *
+		 * @return void
 		 */
 		public static function set_statics() {
 			// Reset just in case this method is called more than once (like when we're testing).
@@ -274,7 +277,7 @@ if ( ! class_exists( 'WPSEO_Video_Analyse_Post' ) ) {
 			/**
 			 * Filter: 'wpseo_video_supported_plugins' - Allow control of which plugins are supported.
 			 *
-			 * @api array $supported_plugins The existing list of supported plugins.
+			 * @param array $supported_plugins The existing list of supported plugins.
 			 */
 			$supported_plugins = apply_filters( 'wpseo_video_supported_plugins', self::$supported_plugins );
 
@@ -328,7 +331,6 @@ if ( ! class_exists( 'WPSEO_Video_Analyse_Post' ) ) {
 					}
 					unset( $alt_protocols );
 
-
 					// Add autoembed information.
 					$video_autoembeds = $instance->get_video_autoembeds();
 					if ( is_array( $video_autoembeds ) && $video_autoembeds !== [] ) {
@@ -340,7 +342,6 @@ if ( ! class_exists( 'WPSEO_Video_Analyse_Post' ) ) {
 						self::$video_autoembeds = array_unique( array_merge( $video_autoembeds, self::$video_autoembeds ) );
 					}
 					unset( $video_autoembeds );
-
 
 					// Add oembed information.
 					$video_oembeds = $instance->get_video_oembeds();
@@ -372,9 +373,8 @@ if ( ! class_exists( 'WPSEO_Video_Analyse_Post' ) ) {
 				/**
 				 * Filter: 'wpseo_video_{$type}_details' - Allow changing the details of a video
 				 *
-				 * @api array $video The video array.
-				 *
-				 * @param \WP_Post $post  Post object.
+				 * @param array   $video The video array.
+				 * @param WP_Post $post  Post object.
 				 */
 				$vid = apply_filters( 'wpseo_video_' . $this->vid['type'] . '_details', $this->vid, $this->post );
 
@@ -387,6 +387,8 @@ if ( ! class_exists( 'WPSEO_Video_Analyse_Post' ) ) {
 
 		/**
 		 * Make sure all duration, view_count, height and width values are integers
+		 *
+		 * @return void
 		 */
 		protected function normalize_values() {
 			$keys = [
@@ -404,6 +406,8 @@ if ( ! class_exists( 'WPSEO_Video_Analyse_Post' ) ) {
 
 		/**
 		 * Analyse the post for video content
+		 *
+		 * @return void
 		 */
 		protected function analyse() {
 
@@ -432,6 +436,8 @@ if ( ! class_exists( 'WPSEO_Video_Analyse_Post' ) ) {
 
 		/**
 		 * Check if the current post type is a video post type and if we can find usable info through it
+		 *
+		 * @return array
 		 */
 		protected function get_video_from_post_type() {
 			$vid = [];
@@ -460,6 +466,8 @@ if ( ! class_exists( 'WPSEO_Video_Analyse_Post' ) ) {
 
 		/**
 		 * Check if any custom fields are video fields and if they contain usable info
+		 *
+		 * @return array
 		 */
 		protected function get_video_from_post_meta() {
 			$vid = [];
@@ -558,6 +566,8 @@ if ( ! class_exists( 'WPSEO_Video_Analyse_Post' ) ) {
 
 		/**
 		 * Get all video attachments and see if we can find one we can use
+		 *
+		 * @return array
 		 */
 		protected function get_video_from_attachment() {
 			$vid = [];
@@ -589,6 +599,8 @@ if ( ! class_exists( 'WPSEO_Video_Analyse_Post' ) ) {
 
 		/**
 		 * Get all the shortcodes, check for any video shortcodes and see if we can parse them to useable info
+		 *
+		 * @return array
 		 */
 		protected function get_video_from_shortcode() {
 			$vid = [];
@@ -672,6 +684,8 @@ if ( ! class_exists( 'WPSEO_Video_Analyse_Post' ) ) {
 		/**
 		 * Grab all urls and check if any are registered video urls
 		 * and if so, grab usable info
+		 *
+		 * @return array
 		 */
 		protected function get_video_from_auto_embeds() {
 			$vid = [];
@@ -679,20 +693,18 @@ if ( ! class_exists( 'WPSEO_Video_Analyse_Post' ) ) {
 			$urls = [];
 
 			// Check if we are in an Elementor ajax save request, because we need a different embed regex.
-			// phpcs:ignore WordPress.Security.NonceVerification.Missing, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Reason: We are not processing form information, We are only strictly comparing and thus no need to sanitize.
-			$post_action            = isset( $_POST['action'] ) && \is_string( $_POST['action'] ) ? wp_unslash( $_POST['action'] ) : '';
+			// phpcs:ignore WordPress.Security.NonceVerification.Missing,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Reason: We are not processing form information, We are only strictly comparing and thus no need to sanitize.
+			$post_action            = isset( $_POST['action'] ) && is_string( $_POST['action'] ) ? wp_unslash( $_POST['action'] ) : '';
 			$is_elementor_ajax_save = $post_action === 'elementor_ajax' || $post_action === 'wpseo_elementor_save';
 
-			if ( \wp_doing_ajax() && $is_elementor_ajax_save ) {
+			if ( wp_doing_ajax() && $is_elementor_ajax_save ) {
 				if ( preg_match_all( '`https?://[^\s<>"]+`im', $this->content, $matches, PREG_PATTERN_ORDER ) ) {
 					$urls = $matches[0];
 				}
 			}
-			else {
-				if ( preg_match_all( '`^(?:\s*)(https?://[^\s<>"]+)(?:\s*)$`im', $this->content, $matches, PREG_PATTERN_ORDER ) ) {
-					// Only interested in the real url matches.
-					$urls = $matches[1];
-				}
+			elseif ( preg_match_all( '`^(?:\s*)(https?://[^\s<>"]+)(?:\s*)$`im', $this->content, $matches, PREG_PATTERN_ORDER ) ) {
+				// Only interested in the real url matches.
+				$urls = $matches[1];
 			}
 
 			foreach ( $urls as $url ) {
@@ -794,7 +806,6 @@ if ( ! class_exists( 'WPSEO_Video_Analyse_Post' ) ) {
 				$vid = [];
 			}
 
-
 			$oembed = $this->grab_embeddable_urls_xpath( $content );
 			if ( is_array( $oembed ) && $oembed !== [] ) {
 
@@ -812,7 +823,6 @@ if ( ! class_exists( 'WPSEO_Video_Analyse_Post' ) ) {
 				}
 			}
 			unset( $oembed );
-
 
 			$oembed = $this->grab_embeddable_urls( $content );
 			if ( is_array( $oembed ) && $oembed !== [] ) {
@@ -832,7 +842,6 @@ if ( ! class_exists( 'WPSEO_Video_Analyse_Post' ) ) {
 			}
 			unset( $oembed );
 
-
 			return $vid;
 		}
 
@@ -845,7 +854,7 @@ if ( ! class_exists( 'WPSEO_Video_Analyse_Post' ) ) {
 		 *
 		 * @param string $content Post content.
 		 *
-		 * @return array Video info array or empty array if no wistia video was matched.
+		 * @return array<string, mixed> Video info array or empty array if no wistia video was matched.
 		 */
 		protected function get_wistia_video_through_old_methods( $content ) {
 			$vid = [];
@@ -932,7 +941,6 @@ if ( ! class_exists( 'WPSEO_Video_Analyse_Post' ) ) {
 			if ( ! isset( $evs_info ) || ! isset( $evs_info['domain'] ) ) {
 				$evs_info = [ 'domain' => 'easyvideosuite.com' ];
 			}
-
 
 			if ( count( $matched_urls ) > 0 ) {
 				$urls = [];
@@ -1243,7 +1251,6 @@ if ( ! class_exists( 'WPSEO_Video_Analyse_Post' ) ) {
 				$url = $vid['url']['url'];
 			}
 
-
 			/* Test the url against the known domains */
 			if ( $url !== '' ) {
 
@@ -1265,7 +1272,6 @@ if ( ! class_exists( 'WPSEO_Video_Analyse_Post' ) ) {
 						unset( $network );
 					}
 				}
-
 
 				// Ok, we have a url, let's see if it's typed properly.
 				$parsed_url = $this->parse_url( $url );
@@ -1292,7 +1298,6 @@ if ( ! class_exists( 'WPSEO_Video_Analyse_Post' ) ) {
 						}
 						unset( $evs_location );
 					}
-
 
 					// Full hostname: www.test.com.
 					switch ( $parsed_url['host'] ) {
@@ -1570,8 +1575,8 @@ if ( ! class_exists( 'WPSEO_Video_Analyse_Post' ) ) {
 						$parsed_url['file'] = array_pop( $file );
 
 						if ( strpos( $parsed_url['file'], '&' ) !== false && $parsed_url['query'] === '' ) {
-							$parsed_url['query'] = substr( self::stristr( $parsed_url['file'], '&' ), 1 );
-							$parsed_url['file']  = self::stristr( $parsed_url['file'], '&', true );
+							$parsed_url['query'] = substr( stristr( $parsed_url['file'], '&' ), 1 );
+							$parsed_url['file']  = stristr( $parsed_url['file'], '&', true );
 							$parsed_url['path']  = str_replace( '&' . $parsed_url['query'], '', $parsed_url['path'] );
 						}
 					}
@@ -1636,6 +1641,9 @@ if ( ! class_exists( 'WPSEO_Video_Analyse_Post' ) ) {
 		 *
 		 * @link http://php.net/strstr
 		 *
+		 * @deprecated 14.9 Use the PHP native strstr() function instead.
+		 * @codeCoverageIgnore
+		 *
 		 * @param string $haystack      Text to search.
 		 * @param mixed  $needle        Needle to find.
 		 * @param bool   $before_needle Before needle.
@@ -1643,29 +1651,17 @@ if ( ! class_exists( 'WPSEO_Video_Analyse_Post' ) ) {
 		 * @return string|bool Returns the matched substring or false if needle is not found
 		 */
 		public static function strstr( $haystack, $needle, $before_needle = false ) {
-			if ( version_compare( PHP_VERSION, '5.3.0', '>=' ) ) {
-				return strstr( $haystack, $needle, $before_needle );
-			}
-			else {
-				if ( $before_needle === false ) {
-					return strstr( $haystack, $needle );
-				}
-				else {
-					$pos = strpos( $haystack, $needle );
-					if ( $pos !== false ) {
-						return substr( $haystack, 0, $pos );
-					}
-					else {
-						return false;
-					}
-				}
-			}
+			_deprecated_function( __METHOD__, 'VideoSEO 14.9', 'the PHP native strstr() function' );
+			return strstr( $haystack, $needle, $before_needle );
 		}
 
 		/**
 		 * Stristr PHP 5.2 compatibility
 		 *
 		 * @link http://php.net/stristr
+		 *
+		 * @deprecated 14.9 Use the PHP native stristr() function instead.
+		 * @codeCoverageIgnore
 		 *
 		 * @param string $haystack      Text to search.
 		 * @param mixed  $needle        Needle to find.
@@ -1674,23 +1670,8 @@ if ( ! class_exists( 'WPSEO_Video_Analyse_Post' ) ) {
 		 * @return string|bool Returns the matched substring or false if needle is not found
 		 */
 		public static function stristr( $haystack, $needle, $before_needle = false ) {
-			if ( version_compare( PHP_VERSION, '5.3.0', '>=' ) ) {
-				return stristr( $haystack, $needle, $before_needle );
-			}
-			else {
-				if ( $before_needle === false ) {
-					return stristr( $haystack, $needle );
-				}
-				else {
-					$pos = stripos( $haystack, $needle );
-					if ( $pos !== false ) {
-						return substr( $haystack, 0, $pos );
-					}
-					else {
-						return false;
-					}
-				}
-			}
+			_deprecated_function( __METHOD__, 'VideoSEO 14.9', 'the PHP native stristr() function' );
+			return stristr( $haystack, $needle, $before_needle );
 		}
 	}
 

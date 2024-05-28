@@ -11,6 +11,8 @@
  * This way WordPress SEO should have set its constants and loaded its main classes.
  *
  * @since 0.2
+ *
+ * @return void
  */
 function yoast_wpseo_video_seo_init() {
 	$bootstrap = new WPSEO_Video_Bootstrap();
@@ -24,6 +26,8 @@ function yoast_wpseo_video_seo_init() {
  * - Cleans up the options to be sure it's set well.
  * - Activates the license, because updating the plugin results in deactivating the license.
  * - Clears the sitemap cache to rebuild the sitemap.
+ *
+ * @return void
  */
 function yoast_wpseo_video_activate() {
 	WPSEO_Video_Utils::load_textdomain();
@@ -46,6 +50,8 @@ function yoast_wpseo_video_activate() {
  * Empties sitemap cache on plugin deactivate.
  *
  * @since 3.8.0
+ *
+ * @return void
  */
 function yoast_wpseo_video_deactivate() {
 	yoast_wpseo_video_clear_sitemap_cache();
@@ -55,6 +61,8 @@ function yoast_wpseo_video_deactivate() {
  * Clears the sitemap index.
  *
  * @since 3.8.0
+ *
+ * @return void
  */
 function yoast_wpseo_video_clear_sitemap_cache() {
 	$bootstrap = new WPSEO_Video_Bootstrap();

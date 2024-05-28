@@ -64,6 +64,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Dailymotion' ) ) {
 
 		/**
 		 * Set the video duration
+		 *
+		 * @return void
 		 */
 		protected function set_duration() {
 			$this->set_duration_from_json_object();
@@ -71,6 +73,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Dailymotion' ) ) {
 
 		/**
 		 * Set the player location
+		 *
+		 * @return void
 		 */
 		protected function set_player_loc() {
 			if ( ! empty( $this->decoded_response->embed_url ) ) {
@@ -80,6 +84,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Dailymotion' ) ) {
 
 		/**
 		 * Set the thumbnail location
+		 *
+		 * @return void
 		 */
 		protected function set_thumbnail_loc() {
 			if ( isset( $this->decoded_response->thumbnail_large_url ) && is_string( $this->decoded_response->thumbnail_large_url ) && $this->decoded_response->thumbnail_large_url !== '' ) {
@@ -92,6 +98,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Dailymotion' ) ) {
 
 		/**
 		 * Set the video view count
+		 *
+		 * @return void
 		 */
 		protected function set_view_count() {
 			if ( ! empty( $this->decoded_response->views_total ) ) {

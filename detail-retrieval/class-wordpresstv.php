@@ -45,7 +45,7 @@ if ( ! class_exists( 'WPSEO_Video_Details_Wordpresstv' ) ) {
 		 *
 		 * @var string
 		 */
-		protected $id_regex = '`v\.wordpress\.com/([^"]+)`i'; // phpcs:ignore WordPress.WP.CapitalPDangit.Misspelled -- URL regex.
+		protected $id_regex = '`v\.wordpress\.com/([^"]+)`i'; // phpcs:ignore WordPress.WP.CapitalPDangit.MisspelledInText -- URL regex.
 
 		/**
 		 * Sprintf template to create a URL from an ID.
@@ -58,6 +58,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Wordpresstv' ) ) {
 		 * Retrieve the video id from a known video url via a remote call, then match it based on a regex
 		 *
 		 * @param int $match_nr The captured parenthesized sub-pattern to use from matches. Defaults to 1.
+		 *
+		 * @return void
 		 */
 		protected function determine_video_id_from_url( $match_nr = 1 ) {
 			if ( ( is_string( $this->vid['url'] ) && $this->vid['url'] !== '' ) && $this->id_regex !== '' ) {

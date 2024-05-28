@@ -107,6 +107,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Videopress' ) ) {
 
 		/**
 		 * Set the content location
+		 *
+		 * @return void
 		 */
 		protected function set_content_loc() {
 			if ( ! empty( $this->decoded_response->mp4->url ) ) {
@@ -116,6 +118,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Videopress' ) ) {
 
 		/**
 		 * Set the video duration
+		 *
+		 * @return void
 		 */
 		protected function set_duration() {
 			$this->set_duration_from_json_object();
@@ -123,6 +127,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Videopress' ) ) {
 
 		/**
 		 * Set the video height
+		 *
+		 * @return void
 		 */
 		protected function set_height() {
 			$this->set_height_from_json_object();
@@ -130,6 +136,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Videopress' ) ) {
 
 		/**
 		 * Set the player location
+		 *
+		 * @return void
 		 */
 		protected function set_player_loc() {
 			if ( ! empty( $this->vid['id'] ) ) {
@@ -140,6 +148,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Videopress' ) ) {
 
 		/**
 		 * Set the thumbnail location
+		 *
+		 * @return void
 		 */
 		protected function set_thumbnail_loc() {
 			if ( isset( $this->decoded_response->posterframe ) && is_string( $this->decoded_response->posterframe ) && $this->decoded_response->posterframe !== '' ) {
@@ -152,6 +162,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Videopress' ) ) {
 
 		/**
 		 * Set the video width
+		 *
+		 * @return void
 		 */
 		protected function set_width() {
 			$this->set_width_from_json_object();

@@ -51,7 +51,7 @@ if ( ! class_exists( 'WPSEO_Video_Details_Blip' ) ) {
 		/**
 		 * Different remote information retrieval sets to be used depending on the information available.
 		 *
-		 * @var array
+		 * @var array<string, array<string, string>>
 		 */
 		private $remotes = [
 			'rss' => [
@@ -123,6 +123,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Blip' ) ) {
 
 		/**
 		 * Set video details to their new values
+		 *
+		 * @return void
 		 */
 		protected function put_video_details() {
 			$this->set_embedlookup();
@@ -131,6 +133,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Blip' ) ) {
 
 		/**
 		 * Set the content location
+		 *
+		 * @return void
 		 */
 		protected function set_content_loc() {
 			if ( $this->retrieve_method === 'rss' && preg_match( '`<enclosure length="[\d]+" type="[^"]+" url="([^"]+)"/>`', $this->decoded_response, $match ) ) {
@@ -140,6 +144,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Blip' ) ) {
 
 		/**
 		 * Set the video duration
+		 *
+		 * @return void
 		 */
 		protected function set_duration() {
 			switch ( $this->retrieve_method ) {
@@ -157,6 +163,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Blip' ) ) {
 
 		/**
 		 * Grab the embedlookup so we can use the faster oembed method next time.
+		 *
+		 * @return void
 		 */
 		protected function set_embedlookup() {
 			switch ( $this->retrieve_method ) {
@@ -180,6 +188,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Blip' ) ) {
 
 		/**
 		 * Set the video height
+		 *
+		 * @return void
 		 */
 		protected function set_height() {
 			switch ( $this->retrieve_method ) {
@@ -197,6 +207,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Blip' ) ) {
 
 		/**
 		 * Set the player location
+		 *
+		 * @return void
 		 */
 		protected function set_player_loc() {
 			switch ( $this->retrieve_method ) {
@@ -217,6 +229,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Blip' ) ) {
 
 		/**
 		 * Set the thumbnail location
+		 *
+		 * @return void
 		 */
 		protected function set_thumbnail_loc() {
 			switch ( $this->retrieve_method ) {
@@ -239,6 +253,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Blip' ) ) {
 		 * Set the video type
 		 *
 		 * @todo - chould this be changed to blip ? or does that impact something else ?
+		 *
+		 * @return void
 		 */
 		protected function set_type() {
 			$this->vid['type'] = 'blip.tv';
@@ -246,6 +262,8 @@ if ( ! class_exists( 'WPSEO_Video_Details_Blip' ) ) {
 
 		/**
 		 * Set the video width
+		 *
+		 * @return void
 		 */
 		protected function set_width() {
 			switch ( $this->retrieve_method ) {

@@ -21,8 +21,6 @@ if ( ! class_exists( 'WPSEO_Meta_Video' ) ) {
 	 *
 	 * {@internal WPSEO_Meta is a class with only static methods, so we will not extend it with
 	 *            a child class, we will only add to it by hooking in.}
-	 *
-	 * @phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedClassFound -- This actually extends / builds upon WPSEO_Meta, so it sorta makes sense.
 	 */
 	class WPSEO_Meta_Video {
 
@@ -146,13 +144,13 @@ if ( ! class_exists( 'WPSEO_Meta_Video' ) ) {
 		 * @return void
 		 */
 		public static function init() {
-			add_filter( 'add_extra_wpseo_meta_fields', [ __CLASS__, 'register_video_meta_fields' ] );
-			add_filter( 'wpseo_metabox_entries_video', [ __CLASS__, 'adjust_video_meta_field_defs' ], 10, 2 );
+			add_filter( 'add_extra_wpseo_meta_fields', [ self::class, 'register_video_meta_fields' ] );
+			add_filter( 'wpseo_metabox_entries_video', [ self::class, 'adjust_video_meta_field_defs' ], 10, 2 );
 
-			add_filter( 'wpseo_sanitize_post_meta_' . WPSEO_Meta::$meta_prefix . 'videositemap-duration', [ __CLASS__, 'sanitize_duration' ], 10, 3 );
-			add_filter( 'wpseo_sanitize_post_meta_' . WPSEO_Meta::$meta_prefix . 'videositemap-rating', [ __CLASS__, 'sanitize_rating' ], 10, 3 );
-			add_filter( 'wpseo_sanitize_post_meta_' . WPSEO_Meta::$meta_prefix . 'videositemap-thumbnail', [ __CLASS__, 'sanitize_thumbnail_upload' ], 10, 3 );
-			add_filter( 'wpseo_sanitize_post_meta_' . WPSEO_Meta::$meta_prefix . 'video_meta', [ __CLASS__, 'sanitize_video_meta' ], 10, 2 );
+			add_filter( 'wpseo_sanitize_post_meta_' . WPSEO_Meta::$meta_prefix . 'videositemap-duration', [ self::class, 'sanitize_duration' ], 10, 3 );
+			add_filter( 'wpseo_sanitize_post_meta_' . WPSEO_Meta::$meta_prefix . 'videositemap-rating', [ self::class, 'sanitize_rating' ], 10, 3 );
+			add_filter( 'wpseo_sanitize_post_meta_' . WPSEO_Meta::$meta_prefix . 'videositemap-thumbnail', [ self::class, 'sanitize_thumbnail_upload' ], 10, 3 );
+			add_filter( 'wpseo_sanitize_post_meta_' . WPSEO_Meta::$meta_prefix . 'video_meta', [ self::class, 'sanitize_video_meta' ], 10, 2 );
 		}
 
 		/**
@@ -281,40 +279,14 @@ if ( ! class_exists( 'WPSEO_Meta_Video' ) ) {
 
 		/**
 		 * Upgrade routine to deal with the fall-out of issue #102
+		 *
+		 * @deprecated 14.9
+		 * @codeCoverageIgnore
+		 *
+		 * @return void
 		 */
 		public static function re_add_durations() {
-			global $wpdb;
-
-			// phpcs:disable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Only runs on upgrade, only gets data.
-			$query       = $wpdb->prepare(
-				"SELECT post_id, meta_value
-					FROM {$wpdb->postmeta}
-					WHERE meta_key = %s",
-				WPSEO_Meta::$meta_prefix . 'video_meta'
-			);
-			$video_metas = $wpdb->get_results( $query ); // phpcs:ignore WordPress.DB.PreparedSQL -- Correctly prepared above.
-
-			$query           = $wpdb->prepare(
-				"SELECT post_id
-					FROM {$wpdb->postmeta}
-					WHERE meta_key = %s",
-				WPSEO_Meta::$meta_prefix . 'videositemap-duration'
-			);
-			$known_durations = $wpdb->get_col( $query ); // phpcs:ignore WordPress.DB.PreparedSQL -- Correctly prepared above.
-			// phpcs:enable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
-
-			if ( is_array( $video_metas ) && $video_metas !== [] ) {
-				foreach ( $video_metas as $video ) {
-					if ( $known_durations === [] || ! in_array( $video->post_id, $known_durations, true ) ) {
-						$meta = maybe_unserialize( $video->meta_value );
-						if ( isset( $meta['duration'] ) ) {
-							WPSEO_Meta::set_value( 'videositemap-duration', $meta['duration'], $video->post_id );
-						}
-						unset( $meta );
-					}
-				}
-			}
-			unset( $query, $video_metas, $known_durations, $video );
+			_deprecated_function( __METHOD__, 'Yoast Video SEO 14.9' );
 		}
 	}
 }
